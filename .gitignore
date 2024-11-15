@@ -1,0 +1,73 @@
+### macOS Specific ###
+# System-generated files and directories on macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# iCloud generated files
+*.icloud
+
+### Xcode Specific ###
+# User-specific settings and project data that shouldn't be tracked
+.DS_Store
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+build/
+DerivedData/
+
+# Compatibility with older Xcode versions
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Xcode project and workspace management
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Ignore Swift Package Manager build artifacts
+.build/
+Packages
+
+# Ignore Carthage build artifacts
+Carthage/Build/
+
+### Firebase Specific ###
+# Firebase configuration files and node modules
+.idea
+**/node_modules/*
+**/.firebaserc
+.runtimeconfig.json
+.firebase/
+
+### Fastlane Specific ###
+# Fastlane-generated files, such as reports and screenshots
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+### Code Injection Specific ###
+# Ignore Code Injection tools and their generated folder
+iOSInjectionProject/
+
+# End of cleaned-up .gitignore

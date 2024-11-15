@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4E2406BB2CE24284009B854A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2406BA2CE24284009B854A /* Lottie */; };
 		4E2406BE2CE242B6009B854A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2406BD2CE242B6009B854A /* IQKeyboardManagerSwift */; };
+		4E249FB32CE7A4160098AB4C /* OrganisationTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E249FB22CE7A4160098AB4C /* OrganisationTeamVC.swift */; };
+		4E249FB62CE7A7890098AB4C /* RankHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E249FB52CE7A7720098AB4C /* RankHeaderView.swift */; };
+		4E249FBA2CE7A7F70098AB4C /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E249FB92CE7A7F70098AB4C /* TeamCell.swift */; };
 		4E32618C2CE1174200005B6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3261822CE1174200005B6A /* AppDelegate.swift */; };
 		4E32618D2CE1174200005B6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3261892CE1174200005B6A /* SceneDelegate.swift */; };
 		4E32618F2CE1174200005B6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E3261832CE1174200005B6A /* Assets.xcassets */; };
@@ -64,9 +67,13 @@
 		4EB20A662CE2957E00F7937A /* correct.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20A652CE2957E00F7937A /* correct.json */; };
 		4EB20A6A2CE29E2900F7937A /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A692CE29E2900F7937A /* StorageService.swift */; };
 		4EB20A6C2CE39D3E00F7937A /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A6B2CE39D3E00F7937A /* AboutVC.swift */; };
+		4EE4FFAA2CE78A550037B293 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E249FB22CE7A4160098AB4C /* OrganisationTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationTeamVC.swift; sourceTree = "<group>"; };
+		4E249FB52CE7A7720098AB4C /* RankHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankHeaderView.swift; sourceTree = "<group>"; };
+		4E249FB92CE7A7F70098AB4C /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		4E3261562CE0310900005B6A /* Tatawei Organisation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tatawei Organisation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E3261822CE1174200005B6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E3261832CE1174200005B6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +127,7 @@
 		4EB20A652CE2957E00F7937A /* correct.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = correct.json; sourceTree = "<group>"; };
 		4EB20A692CE29E2900F7937A /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		4EB20A6B2CE39D3E00F7937A /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E249FB42CE7A72C0098AB4C /* CellsHeader */ = {
+			isa = PBXGroup;
+			children = (
+				4E249FB52CE7A7720098AB4C /* RankHeaderView.swift */,
+			);
+			path = CellsHeader;
+			sourceTree = "<group>";
+		};
 		4E32614D2CE0310900005B6A = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +236,7 @@
 		4E3261972CE1177300005B6A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4E249FB42CE7A72C0098AB4C /* CellsHeader */,
 				4E465D512CE3ACAD00A3A986 /* Cells */,
 				4E3261D72CE11BBA00005B6A /* IntroTataweiVC.swift */,
 				4E3261D22CE1191C00005B6A /* ContainerVC.swift */,
@@ -233,6 +250,8 @@
 				4E3261E52CE11F9B00005B6A /* OpportunityManagementVC.swift */,
 				4E3261E72CE11FB400005B6A /* AttendanceVC.swift */,
 				4E3261E92CE11FCB00005B6A /* ProfileVC.swift */,
+				4E249FB22CE7A4160098AB4C /* OrganisationTeamVC.swift */,
+				4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */,
 				4EB20A6B2CE39D3E00F7937A /* AboutVC.swift */,
 			);
 			path = Controller;
@@ -306,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				4E465D522CE3ACC800A3A986 /* SettingsCell.swift */,
+				4E249FB92CE7A7F70098AB4C /* TeamCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -414,10 +434,12 @@
 				4EB20A572CE25D9E00F7937A /* Cities.swift in Sources */,
 				4EB20A582CE25D9E00F7937A /* Badges.swift in Sources */,
 				4EB20A592CE25D9E00F7937A /* Icon.swift in Sources */,
+				4E249FB32CE7A4160098AB4C /* OrganisationTeamVC.swift in Sources */,
 				4EB20A5A2CE25D9E00F7937A /* Organization.swift in Sources */,
 				4E32619C2CE117F700005B6A /* Storyboarded.swift in Sources */,
 				4E32619D2CE117F700005B6A /* MainCoordinator.swift in Sources */,
 				4E3261DE2CE11E5A00005B6A /* LoginVC.swift in Sources */,
+				4E249FB62CE7A7890098AB4C /* RankHeaderView.swift in Sources */,
 				4E3261EA2CE11FCB00005B6A /* ProfileVC.swift in Sources */,
 				4E32619E2CE117F700005B6A /* Coordinator.swift in Sources */,
 				4E32618C2CE1174200005B6A /* AppDelegate.swift in Sources */,
@@ -441,6 +463,8 @@
 				4E3261BC2CE1181200005B6A /* MainExtensions.swift in Sources */,
 				4E3261BD2CE1181200005B6A /* MessageView.swift in Sources */,
 				4E3261BE2CE1181200005B6A /* AppCheckProviderFactory.swift in Sources */,
+				4E249FBA2CE7A7F70098AB4C /* TeamCell.swift in Sources */,
+				4EE4FFAA2CE78A550037B293 /* InvitationCodeVC.swift in Sources */,
 				4EB20A6C2CE39D3E00F7937A /* AboutVC.swift in Sources */,
 				4E32618D2CE1174200005B6A /* SceneDelegate.swift in Sources */,
 			);

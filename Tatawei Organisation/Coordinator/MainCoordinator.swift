@@ -104,5 +104,19 @@ final class MainCoordinator: Coordinator {
         navigationController.present(vc, animated: true)
     }
     
+    func viewInvitationCodeVC(organisationID: String) {
+        let vc = InvitationCodeVC.instantiate()
+        vc.coordinator = self
+        vc.organisationID = organisationID
+        vc.modalPresentationStyle = .overFullScreen
+        navigationController.present(vc, animated: true)
+    }
+    
+    func viewOrganisationTeamVC() {
+        let vc = OrganisationTeamVC.instantiate()
+        vc.coordinator = self
+        navigationController.present(vc, animated: true)
+    }
+    
 }
 

@@ -246,6 +246,38 @@ class OfficialDataService {
                 }
             }
         }
+    
+    //MARK:- Download all official for organisation
+    func getAllOfficialsFromOrganisation(organisationID: String, completion: @escaping (_ allUsers: [Official], _ error: Error?)->Void) {
+        var users: [Official] = []
         
+        FirestoreReference(.organisations).document(organisationID).collection("organisationOfficials").getDocuments { (snapshot, error) in
+            // Handle error case
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+                completion([], error) // Return an empty array on error
+                return
+            }
+            
+            // Guard against empty snapshot
+            guard let documents = snapshot?.documents else {
+                print("No documents found")
+                completion([], error) // Return an empty array if no documents exist
+                return
+            }
+            
+            // Parse all users and filter out the current student
+            let allUsers = documents.compactMap { (snapshot) -> Official? in
+                return try? snapshot.data(as: Official.self)
+            }
+            
+            users.append(contentsOf: allUsers)
+            
+            
+            // Completion handler with filtered list of users
+            completion(users, nil)
+        }
     }
+    
+}
 

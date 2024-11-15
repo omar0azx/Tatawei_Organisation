@@ -27,6 +27,7 @@ class NavigationVC: ContainerVC, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        updateStudentData()
         setupCurvedView()
         self.navigate(to: 0)
         for (index, button) in navButtons.enumerated() {
@@ -144,6 +145,18 @@ class NavigationVC: ContainerVC, Storyboarded {
                 self.navImagesBTN[num].tintColor = UIColor(named: "standr")
             } else {
                 self.navImagesBTN[num].tintColor = UIColor.systemGray
+            }
+        }
+    }
+    
+    func updateStudentData() {
+        if let organisationID = Organization.currentOrganization?.id {
+            OfficialDataService.shared.getOrganisationData(organisationID: organisationID) { status, error in
+                if status! {
+                    print("Success to update locally storage")
+                } else {
+                    print("Have problem when update locally storage")
+                }
             }
         }
     }

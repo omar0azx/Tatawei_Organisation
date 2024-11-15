@@ -35,9 +35,9 @@ class ProfileVC: UIViewController, Storyboarded {
     
     @IBOutlet weak var settingsTitle: UILabel!
     
-    @IBOutlet weak var studentImage: UIImageView!
-    @IBOutlet weak var studentName: UILabel!
-    @IBOutlet weak var studentEmail: UILabel!
+    @IBOutlet weak var officialImage: UIImageView!
+    @IBOutlet weak var officialName: UILabel!
+    @IBOutlet weak var officialEmail: UILabel!
     @IBOutlet weak var organisationDescription: UILabel!
     @IBOutlet weak var organisationImage: UIImageView!
     
@@ -76,9 +76,9 @@ class ProfileVC: UIViewController, Storyboarded {
                 guard let image = imag else {return}
                 self.organisationImage.image = image
             }
-            studentImage.image = official.gender == .male ? #imageLiteral(resourceName: "man.svg") : #imageLiteral(resourceName: "women.svg")
-            studentName.text = official.name
-            studentEmail.text = official.email
+            officialImage.image = official.gender == .male ? #imageLiteral(resourceName: "man.svg") : #imageLiteral(resourceName: "women.svg")
+            officialName.text = official.name
+            officialEmail.text = official.email
             organisationDescription.text = "\(organization.name) - \(official.role == 0 ? "قائد" : "عضو")"
         }
         
@@ -121,14 +121,14 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             // About Us
         case .about:
             print("")
-        self.coordinator?.viewAboutVC()
+            self.coordinator?.viewAboutVC()
             // Reset Password
         case .resetPassword:
             showCustomAlert(message: "هل أنت متأكد من انك تريد إعادة تعيين كلمة المرور؟", onConfirm: {
                 self.coordinator?.viewforgetPasswordVC()
-                    }, onCancel: {
-                        print("Action cancelled")
-                    })
+            }, onCancel: {
+                print("Action cancelled")
+            })
             
             // Delete Account
         case .deleteAccount:
@@ -140,9 +140,9 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-                    }, onCancel: {
-                        print("Action cancelled")
-                    })
+            }, onCancel: {
+                print("Action cancelled")
+            })
             
             // Logout
         case .logout:
@@ -154,9 +154,9 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-                    }, onCancel: {
-                        print("Action cancelled")
-                    })
+            }, onCancel: {
+                print("Action cancelled")
+            })
         case .organisation:
             isOrganisationSettings = true
             settingsTitle.text = "المنظمة"
@@ -164,14 +164,15 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             backBTN.alpha = 1
             tableView.reloadData()
         case .organisationInvitation:
-            if let officialRole = Official.currentOfficial?.role, officialRole == 0 {
-                print("organisationInvitation")
+            if let officialRole = Official.currentOfficial?.role, officialRole == 0, let organizationID = Organization.currentOrganization?.id {
+                coordinator?.viewInvitationCodeVC(organisationID: organizationID)
             } else {
                 let errorView = MessageView(message: "غير مصرح لك بعرض الرمز", animationName: "warning", animationTime: 1)
                 errorView.show(in: self.view)
+                return
             }
         case .organisationTeam:
-            print("organisationTeam")
+            coordinator?.viewOrganisationTeamVC()
         }
         
     }

@@ -76,7 +76,7 @@ class NavigationVC: ContainerVC, Storyboarded {
     
     
     @IBAction func addNewOpportunity(_ sender: UIButton) {
-        
+        coordinator?.viewOpportunityMakerVC()
     }
     
     

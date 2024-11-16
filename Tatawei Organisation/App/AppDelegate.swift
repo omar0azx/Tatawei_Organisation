@@ -9,6 +9,8 @@ import UIKit
 import IQKeyboardManagerSwift
 import FirebaseCore
 import FirebaseAppCheck
+import GoogleMaps
+import GooglePlaces
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let providerFactory = TataweiAppCheckProviderFactory()
         AppCheck.setAppCheckProviderFactory(providerFactory)
         AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
+        
+        GMSServices.provideAPIKey("AIzaSyADEz8PXDl2MCv4hAy8tnDtDxRX-z6PJMk")
+        GMSPlacesClient.provideAPIKey("AIzaSyADEz8PXDl2MCv4hAy8tnDtDxRX-z6PJMk")
         
         FirebaseApp.configure()
         IQKeyboardManager.shared.isEnabled = true

@@ -179,51 +179,48 @@ class DesignableTextField: UITextField {
         layer.addSublayer(bottomLayer)
     }
     
+}
+
+extension UITextField {
     func convertToDate() {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.minimumDate = Date() // Set minimum date to the current date
-        datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 1, to: Date()) // Set maximum date to 1 year from now
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: .valueChanged)
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.minimumDate = Date() // Set minimum date to today
+            datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 1, to: Date()) // Set max date to 1 year from now
+            
+            self.inputView = datePicker
+        }
         
-        self.inputView = datePicker
-        self.text = formatDate(date: Date()) // todays Date
-    }
-    
-    @objc func dateChange(datePicker: UIDatePicker)
-    {
-        self.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate(date: Date) -> String
-    {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM yyyy"
-        return formatter.string(from: date)
-    }
-    
-    func convertToTime() {
-        let timePicker = UIDatePicker()
-        timePicker.datePickerMode = .time
-        timePicker.addTarget(self, action: #selector(timeChange(timePicker:)), for: UIControl.Event.valueChanged)
-        timePicker.preferredDatePickerStyle = .wheels
+        @objc private func dateChange(datePicker: UIDatePicker) {
+            self.text = formatDate(date: datePicker.date)
+        }
         
-        // You can set the time format to display AM/PM
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
-        self.text = formatter.string(from: timePicker.date)
+        private func formatDate(date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            return formatter.string(from: date)
+        }
         
-        self.inputView = timePicker
-    }
-    
-    @objc func timeChange(timePicker: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
-        self.text = formatter.string(from: timePicker.date)
-    }
-    
-    
+        func convertToTime() {
+            let timePicker = UIDatePicker()
+            timePicker.datePickerMode = .time
+            timePicker.addTarget(self, action: #selector(timeChange(timePicker:)), for: .valueChanged)
+            timePicker.preferredDatePickerStyle = .wheels
+            
+            self.inputView = timePicker
+        }
+        
+        @objc private func timeChange(timePicker: UIDatePicker) {
+            self.text = formatTime(date: timePicker.date)
+        }
+        
+        private func formatTime(date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mm a" // Format for AM/PM time
+            return formatter.string(from: date)
+        }
 }
 
 extension UIView {
@@ -525,6 +522,17 @@ extension CATransition {
 }
 
 extension UITextField: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    // A closure to notify when an option is selected
+    var didSelectOption: ((Int) -> Void)? {
+        get {
+            return objc_getAssociatedObject(self, &UITextField.didSelectOptionKey) as? ((Int) -> Void)
+        }
+        set {
+            objc_setAssociatedObject(self, &UITextField.didSelectOptionKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
     // Function to convert the text field to a generic picker
     func convertToPicker(options: [String]) {
         let picker = UIPickerView()
@@ -554,6 +562,9 @@ extension UITextField: UIPickerViewDelegate, UIPickerViewDataSource {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.text = pickerOptions?[row] // Update text field when an option is selected
+        
+        // Notify the view controller about the selected index
+        didSelectOption?(row)
     }
     
     // Function to dismiss the keyboard
@@ -567,7 +578,9 @@ extension UITextField: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     private static var pickerOptionsKey: UInt8 = 0
+    private static var didSelectOptionKey: UInt8 = 0
 }
+
 
 extension UICollectionView {
     @IBInspectable

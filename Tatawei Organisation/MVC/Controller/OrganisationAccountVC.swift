@@ -29,6 +29,7 @@ class OrganisationAccountVC: UIViewController, Storyboarded, UploadLogo {
     var gender: [String] = ["", Gender.male.rawValue, Gender.female.rawValue]
     
     
+    
     //MARK: - IBOutleats
     
     @IBOutlet weak var titleLabel: UILabel!

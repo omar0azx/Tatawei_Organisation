@@ -15,7 +15,7 @@ class OrganisationTeamVC: UIViewController, Storyboarded {
     var coordinator: MainCoordinator?
     
     var officials: [Official] = []
-    var leader: Official?
+    var leaders: [Official] = []
     
     
     //MARK: - IBOutleats
@@ -39,7 +39,7 @@ class OrganisationTeamVC: UIViewController, Storyboarded {
     
     
     //MARK: - Functions
-//    
+    
     func getOrganisationInformation() {
         if let official = Official.currentOfficial, let organization = Organization.currentOrganization {
             StorageService.shared.downloadImage(from: "organisations_icons/\(official.organizationID).jpg") { imag, error in
@@ -59,7 +59,7 @@ class OrganisationTeamVC: UIViewController, Storyboarded {
                 if error != nil {
                     print("No students found.")
                 } else {
-                    self.leader = allofficials.filter{$0.role == 0}.first
+                    self.leaders = allofficials.filter{$0.role == 0}
                     self.officials = allofficials.filter{$0.role == 1}
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
@@ -81,7 +81,7 @@ class OrganisationTeamVC: UIViewController, Storyboarded {
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return section == 0 ? 1 : officials.count
+            return section == 0 ? leaders.count : officials.count
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -93,7 +93,7 @@ class OrganisationTeamVC: UIViewController, Storyboarded {
             if let official = Official.currentOfficial {
                 if indexPath.section == 0 {
                     cell.officialName.textColor = .white
-                    cell.config(backGroundView: .standr, image: leader?.gender == .male ? #imageLiteral(resourceName: "man.svg") : #imageLiteral(resourceName: "women.svg"), name: leader?.name ?? "")
+                    cell.config(backGroundView: .standr, image: leaders[indexPath.row].gender == .male ? #imageLiteral(resourceName: "man.svg") : #imageLiteral(resourceName: "women.svg"), name: leaders[indexPath.row].name)
                 } else {
                     cell.config(backGroundView: .systemGray5, image: officials[indexPath.row].gender == .male ? #imageLiteral(resourceName: "man.svg") : #imageLiteral(resourceName: "women.svg"), name: officials[indexPath.row].name)
                 }

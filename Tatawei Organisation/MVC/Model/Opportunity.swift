@@ -37,4 +37,37 @@ struct Opportunity: Codable {
             dateFormatter.dateFormat = "yyyy-MM-dd" // Use your date format here
             return dateFormatter.date(from: date)
         }
+    
+    static var allOpportunities: [Opportunity]? {
+            if let data = UserDefaults.standard.data(forKey: kCURRENTOPPORTUNITIES) {
+                let decoder = JSONDecoder()
+                do {
+                    let opportunitiesObject = try decoder.decode([Opportunity].self, from: data)
+                    return opportunitiesObject
+                } catch {
+                    print(error.localizedDescription)
+                }
+            
+        }
+        return nil
+    }
+}
+
+func addOpportunityLocally(_ newOpportunity: Opportunity) {
+    saveOpportunitiesLocally([newOpportunity])
+}
+
+
+func saveOpportunitiesLocally(_ newOpportunities: [Opportunity]) {
+
+    var currentOpportunities = Opportunity.allOpportunities ?? []
+    currentOpportunities.append(contentsOf: newOpportunities)
+    
+    let encoder = JSONEncoder()
+    do {
+        let data = try encoder.encode(currentOpportunities)
+        UserDefaults.standard.set(data, forKey: kCURRENTOPPORTUNITIES)
+    } catch {
+        print("Error saving opportunities: \(error.localizedDescription)")
+    }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 class HomeVC: UIViewController, Storyboarded {
+    
+    //MARK: - Varibales
 
     var coordinator: MainCoordinator?
     

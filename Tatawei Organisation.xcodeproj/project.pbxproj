@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E09494A2CEBACAA008DA911 /* OpportunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0949492CEBACAA008DA911 /* OpportunityCell.swift */; };
 		4E2406BB2CE24284009B854A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2406BA2CE24284009B854A /* Lottie */; };
 		4E2406BE2CE242B6009B854A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2406BD2CE242B6009B854A /* IQKeyboardManagerSwift */; };
 		4E249FB32CE7A4160098AB4C /* OrganisationTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E249FB22CE7A4160098AB4C /* OrganisationTeamVC.swift */; };
@@ -78,6 +79,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E0949492CEBACAA008DA911 /* OpportunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityCell.swift; sourceTree = "<group>"; };
 		4E249FB22CE7A4160098AB4C /* OrganisationTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationTeamVC.swift; sourceTree = "<group>"; };
 		4E249FB52CE7A7720098AB4C /* RankHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankHeaderView.swift; sourceTree = "<group>"; };
 		4E249FB92CE7A7F70098AB4C /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				4E465D522CE3ACC800A3A986 /* SettingsCell.swift */,
 				4E249FB92CE7A7F70098AB4C /* TeamCell.swift */,
 				4ED7FB9F2CE7FE5D00848821 /* IconCell.swift */,
+				4E0949492CEBACAA008DA911 /* OpportunityCell.swift */,
 				4EE6D3E62CE96B9A0063587C /* HomeCell.swift */,
 			);
 			path = Cells;
@@ -481,6 +484,7 @@
 				4EB20A6A2CE29E2900F7937A /* StorageService.swift in Sources */,
 				4E3261D82CE11BBC00005B6A /* IntroTataweiVC.swift in Sources */,
 				4E3261CF2CE1182600005B6A /* AuthService.swift in Sources */,
+				4E09494A2CEBACAA008DA911 /* OpportunityCell.swift in Sources */,
 				4E3261E42CE11F6B00005B6A /* HomeVC.swift in Sources */,
 				4E3261DC2CE11D0C00005B6A /* OrganisationAccountVC.swift in Sources */,
 				4E3261E62CE11F9B00005B6A /* OpportunityManagementVC.swift in Sources */,

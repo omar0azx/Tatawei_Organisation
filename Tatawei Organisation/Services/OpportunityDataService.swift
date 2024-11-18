@@ -29,6 +29,7 @@ class OpportunityDataService {
                     return
                 }
                 print("Opportunity added successfully!")
+                addOpportunityLocally(newOpportunity)
                 completion(true, nil)
             }
         } catch {

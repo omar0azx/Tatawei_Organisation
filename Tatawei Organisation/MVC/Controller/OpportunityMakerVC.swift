@@ -245,7 +245,7 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
             if mode == .addNewOpportunity {
                 let loadView = MessageView(message: "يرجى الإنتظار", animationName: "loading", animationTime: 1)
                 loadView.show(in: self.view)
-                    registerUser()
+                addNewOpportunity()
             } else {
 //                    updateUser()
             }
@@ -267,7 +267,7 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
         collectionView.reloadData()
     }
     
-    private func registerUser() {
+    private func addNewOpportunity() {
         guard let organisation = Organization.currentOrganization else {return}
         OpportunityDataService.shared.addNewOpportunity(organisationID: organisation.id, name: opportunityNameTF.text!, description: opportunityDescriptionTF.text!, date: opportunityDateTF.text!, time: opportunityTimeTF.text!, hour: Int(opportunityHoursTF.text!)!, city: Cities(rawValue: cityTF.text!)!, status: .open, category: InterestCategories(rawValue: opportunityCategoriesTF.text!)!, iconNumber: selectedIndex!.row, location: locationInformation.text!, latitude: latitude!, longitude: longitude!, studentsNumber: Int(studentsNumberTF.text!)!, organizationName: organisation.name) { success, error in
             if error == nil {

@@ -74,6 +74,7 @@
 		4ED7FBA82CE9196000848821 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED7FBA72CE9196000848821 /* GooglePlacesSwift */; };
 		4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */; };
 		4EE4FFAA2CE78A550037B293 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */; };
+		4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6D3E62CE96B9A0063587C /* HomeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,7 @@
 		4ED7FB9F2CE7FE5D00848821 /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityDataService.swift; sourceTree = "<group>"; };
 		4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
+		4EE6D3E62CE96B9A0063587C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +343,7 @@
 				4E465D522CE3ACC800A3A986 /* SettingsCell.swift */,
 				4E249FB92CE7A7F70098AB4C /* TeamCell.swift */,
 				4ED7FB9F2CE7FE5D00848821 /* IconCell.swift */,
+				4EE6D3E62CE96B9A0063587C /* HomeCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				4E3261E82CE11FB400005B6A /* AttendanceVC.swift in Sources */,
 				4E3261B72CE1181200005B6A /* CustomAlertView.swift in Sources */,
 				4E3261B92CE1181200005B6A /* StringExtensions.swift in Sources */,
+				4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */,
 				4E3261BA2CE1181200005B6A /* CustomTermsView.swift in Sources */,
 				4EB20A6A2CE29E2900F7937A /* StorageService.swift in Sources */,
 				4E3261D82CE11BBC00005B6A /* IntroTataweiVC.swift in Sources */,

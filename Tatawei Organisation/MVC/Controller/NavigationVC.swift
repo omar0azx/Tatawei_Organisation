@@ -27,7 +27,7 @@ class NavigationVC: ContainerVC, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        updateStudentData()
+        updateOrganisationData()
         setupCurvedView()
         self.navigate(to: 0)
         for (index, button) in navButtons.enumerated() {
@@ -76,7 +76,7 @@ class NavigationVC: ContainerVC, Storyboarded {
     
     
     @IBAction func addNewOpportunity(_ sender: UIButton) {
-        
+        coordinator?.viewOpportunityMakerVC()
     }
     
     
@@ -149,7 +149,7 @@ class NavigationVC: ContainerVC, Storyboarded {
         }
     }
     
-    func updateStudentData() {
+    func updateOrganisationData() {
         if let organisationID = Organization.currentOrganization?.id {
             OfficialDataService.shared.getOrganisationData(organisationID: organisationID) { status, error in
                 if status! {

@@ -118,5 +118,23 @@ final class MainCoordinator: Coordinator {
         navigationController.present(vc, animated: true)
     }
     
+    func viewOpportunityMakerVC() {
+        let vc = OpportunityMakerVC.instantiate()
+        vc.coordinator = self
+        vc.modalPresentationStyle = .fullScreen
+        navigationController.present(vc, animated: true)
+    }
+    
+    func viewOMapVC(data: DataSelectionDelegate) {
+        let vc = MapVC.instantiate()
+        vc.coordinator = self
+        vc.delegate = data
+        if let topViewController = navigationController.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.present(vc, animated: true, completion: nil)
+        }
+    }
+    
 }
 

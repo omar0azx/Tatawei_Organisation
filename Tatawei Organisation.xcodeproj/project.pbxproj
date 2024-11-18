@@ -67,7 +67,14 @@
 		4EB20A662CE2957E00F7937A /* correct.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20A652CE2957E00F7937A /* correct.json */; };
 		4EB20A6A2CE29E2900F7937A /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A692CE29E2900F7937A /* StorageService.swift */; };
 		4EB20A6C2CE39D3E00F7937A /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A6B2CE39D3E00F7937A /* AboutVC.swift */; };
+		4ED7FB9E2CE7F84A00848821 /* OpportunityMakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7FB9D2CE7F84A00848821 /* OpportunityMakerVC.swift */; };
+		4ED7FBA02CE7FE5D00848821 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7FB9F2CE7FE5D00848821 /* IconCell.swift */; };
+		4ED7FBA32CE9184900848821 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED7FBA22CE9184900848821 /* GoogleMaps */; };
+		4ED7FBA62CE9196000848821 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED7FBA52CE9196000848821 /* GooglePlaces */; };
+		4ED7FBA82CE9196000848821 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED7FBA72CE9196000848821 /* GooglePlacesSwift */; };
+		4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */; };
 		4EE4FFAA2CE78A550037B293 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */; };
+		4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6D3E62CE96B9A0063587C /* HomeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,7 +134,11 @@
 		4EB20A652CE2957E00F7937A /* correct.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = correct.json; sourceTree = "<group>"; };
 		4EB20A692CE29E2900F7937A /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		4EB20A6B2CE39D3E00F7937A /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		4ED7FB9D2CE7F84A00848821 /* OpportunityMakerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityMakerVC.swift; sourceTree = "<group>"; };
+		4ED7FB9F2CE7FE5D00848821 /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
+		4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityDataService.swift; sourceTree = "<group>"; };
 		4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
+		4EE6D3E62CE96B9A0063587C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,10 +147,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2406BB2CE24284009B854A /* Lottie in Frameworks */,
+				4ED7FBA62CE9196000848821 /* GooglePlaces in Frameworks */,
 				4EB20A422CE25D4B00F7937A /* FirebaseAppCheck in Frameworks */,
 				4E2406BE2CE242B6009B854A /* IQKeyboardManagerSwift in Frameworks */,
 				4EB20A462CE25D4B00F7937A /* FirebaseFirestore in Frameworks */,
+				4ED7FBA82CE9196000848821 /* GooglePlacesSwift in Frameworks */,
 				4EB20A442CE25D4B00F7937A /* FirebaseAuth in Frameworks */,
+				4ED7FBA32CE9184900848821 /* GoogleMaps in Frameworks */,
 				4EB20A482CE25D4B00F7937A /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +260,7 @@
 				4E3261DB2CE11D0300005B6A /* OrganisationAccountVC.swift */,
 				4EB20A5D2CE2703400F7937A /* UploadLogoVC.swift */,
 				4E3261DF2CE11ECF00005B6A /* ForgetPasswordVC.swift */,
+				4ED7FB9D2CE7F84A00848821 /* OpportunityMakerVC.swift */,
 				4E3261E32CE11F6B00005B6A /* HomeVC.swift */,
 				4E3261E52CE11F9B00005B6A /* OpportunityManagementVC.swift */,
 				4E3261E72CE11FB400005B6A /* AttendanceVC.swift */,
@@ -316,6 +331,7 @@
 			children = (
 				4E3261C92CE1182600005B6A /* AuthService.swift */,
 				4EB20A5F2CE277F400F7937A /* OfficialDataService.swift */,
+				4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */,
 				4EB20A692CE29E2900F7937A /* StorageService.swift */,
 			);
 			path = Services;
@@ -326,6 +342,8 @@
 			children = (
 				4E465D522CE3ACC800A3A986 /* SettingsCell.swift */,
 				4E249FB92CE7A7F70098AB4C /* TeamCell.swift */,
+				4ED7FB9F2CE7FE5D00848821 /* IconCell.swift */,
+				4EE6D3E62CE96B9A0063587C /* HomeCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -353,6 +371,9 @@
 				4EB20A432CE25D4B00F7937A /* FirebaseAuth */,
 				4EB20A452CE25D4B00F7937A /* FirebaseFirestore */,
 				4EB20A472CE25D4B00F7937A /* FirebaseStorage */,
+				4ED7FBA22CE9184900848821 /* GoogleMaps */,
+				4ED7FBA52CE9196000848821 /* GooglePlaces */,
+				4ED7FBA72CE9196000848821 /* GooglePlacesSwift */,
 			);
 			productName = "Tatawei Organisation";
 			productReference = 4E3261562CE0310900005B6A /* Tatawei Organisation.app */;
@@ -386,6 +407,8 @@
 				4E2406B92CE24284009B854A /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				4E2406BC2CE242B6009B854A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				4EB20A402CE25D4B00F7937A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4ED7FBA12CE9184900848821 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
+				4ED7FBA42CE9196000848821 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4E3261572CE0310900005B6A /* Products */;
@@ -439,6 +462,7 @@
 				4E32619C2CE117F700005B6A /* Storyboarded.swift in Sources */,
 				4E32619D2CE117F700005B6A /* MainCoordinator.swift in Sources */,
 				4E3261DE2CE11E5A00005B6A /* LoginVC.swift in Sources */,
+				4ED7FBA02CE7FE5D00848821 /* IconCell.swift in Sources */,
 				4E249FB62CE7A7890098AB4C /* RankHeaderView.swift in Sources */,
 				4E3261EA2CE11FCB00005B6A /* ProfileVC.swift in Sources */,
 				4E32619E2CE117F700005B6A /* Coordinator.swift in Sources */,
@@ -452,6 +476,7 @@
 				4E3261E82CE11FB400005B6A /* AttendanceVC.swift in Sources */,
 				4E3261B72CE1181200005B6A /* CustomAlertView.swift in Sources */,
 				4E3261B92CE1181200005B6A /* StringExtensions.swift in Sources */,
+				4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */,
 				4E3261BA2CE1181200005B6A /* CustomTermsView.swift in Sources */,
 				4EB20A6A2CE29E2900F7937A /* StorageService.swift in Sources */,
 				4E3261D82CE11BBC00005B6A /* IntroTataweiVC.swift in Sources */,
@@ -459,8 +484,10 @@
 				4E3261E42CE11F6B00005B6A /* HomeVC.swift in Sources */,
 				4E3261DC2CE11D0C00005B6A /* OrganisationAccountVC.swift in Sources */,
 				4E3261E62CE11F9B00005B6A /* OpportunityManagementVC.swift in Sources */,
+				4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */,
 				4E3261D52CE1193200005B6A /* NavigationVC.swift in Sources */,
 				4E3261BC2CE1181200005B6A /* MainExtensions.swift in Sources */,
+				4ED7FB9E2CE7F84A00848821 /* OpportunityMakerVC.swift in Sources */,
 				4E3261BD2CE1181200005B6A /* MessageView.swift in Sources */,
 				4E3261BE2CE1181200005B6A /* AppCheckProviderFactory.swift in Sources */,
 				4E249FBA2CE7A7F70098AB4C /* TeamCell.swift in Sources */,
@@ -717,6 +744,22 @@
 				minimumVersion = 11.4.0;
 			};
 		};
+		4ED7FBA12CE9184900848821 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.1;
+			};
+		};
+		4ED7FBA42CE9196000848821 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -749,6 +792,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4EB20A402CE25D4B00F7937A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		4ED7FBA22CE9184900848821 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4ED7FBA12CE9184900848821 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
+			productName = GoogleMaps;
+		};
+		4ED7FBA52CE9196000848821 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4ED7FBA42CE9196000848821 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlaces;
+		};
+		4ED7FBA72CE9196000848821 /* GooglePlacesSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4ED7FBA42CE9196000848821 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlacesSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

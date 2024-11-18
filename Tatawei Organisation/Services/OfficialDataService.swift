@@ -103,13 +103,13 @@ class OfficialDataService {
                 let organisation = try document.data(as: Organization.self)
                 
                 saveOrganizationLocally(organisation)
-                print("Student found and saved locally: student")
+                print("organisation found and saved locally: organisation")
                 
                 completion(true, nil)
                 
             } catch {
                 
-                print("Error decoding student data: \(error.localizedDescription)")
+                print("Error decoding organisation data: \(error.localizedDescription)")
                 
                 completion(false, error)
             }

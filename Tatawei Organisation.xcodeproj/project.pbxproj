@@ -47,6 +47,7 @@
 		4E3261E62CE11F9B00005B6A /* OpportunityManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3261E52CE11F9B00005B6A /* OpportunityManagementVC.swift */; };
 		4E3261E82CE11FB400005B6A /* AttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3261E72CE11FB400005B6A /* AttendanceVC.swift */; };
 		4E3261EA2CE11FCB00005B6A /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3261E92CE11FCB00005B6A /* ProfileVC.swift */; };
+		4E41D8D82CEBD1DB00900C27 /* OpportunityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E41D8D72CEBD1DB00900C27 /* OpportunityVC.swift */; };
 		4E465D532CE3ACC800A3A986 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E465D522CE3ACC800A3A986 /* SettingsCell.swift */; };
 		4EB20A3F2CE25CCB00F7937A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20A3E2CE25CCB00F7937A /* GoogleService-Info.plist */; };
 		4EB20A422CE25D4B00F7937A /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB20A412CE25D4B00F7937A /* FirebaseAppCheck */; };
@@ -119,6 +120,7 @@
 		4E3261E52CE11F9B00005B6A /* OpportunityManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityManagementVC.swift; sourceTree = "<group>"; };
 		4E3261E72CE11FB400005B6A /* AttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceVC.swift; sourceTree = "<group>"; };
 		4E3261E92CE11FCB00005B6A /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		4E41D8D72CEBD1DB00900C27 /* OpportunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityVC.swift; sourceTree = "<group>"; };
 		4E465D522CE3ACC800A3A986 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		4EB20A3E2CE25CCB00F7937A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4EB20A492CE25D9E00F7937A /* Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badges.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				4ED7FB9D2CE7F84A00848821 /* OpportunityMakerVC.swift */,
 				4E3261E32CE11F6B00005B6A /* HomeVC.swift */,
 				4E3261E52CE11F9B00005B6A /* OpportunityManagementVC.swift */,
+				4E41D8D72CEBD1DB00900C27 /* OpportunityVC.swift */,
 				4E3261E72CE11FB400005B6A /* AttendanceVC.swift */,
 				4E3261E92CE11FCB00005B6A /* ProfileVC.swift */,
 				4E249FB22CE7A4160098AB4C /* OrganisationTeamVC.swift */,
@@ -471,6 +474,7 @@
 				4E32619E2CE117F700005B6A /* Coordinator.swift in Sources */,
 				4E32618C2CE1174200005B6A /* AppDelegate.swift in Sources */,
 				4E465D532CE3ACC800A3A986 /* SettingsCell.swift in Sources */,
+				4E41D8D82CEBD1DB00900C27 /* OpportunityVC.swift in Sources */,
 				4E3261B62CE1181200005B6A /* Constants.swift in Sources */,
 				4EB20A5E2CE2703400F7937A /* UploadLogoVC.swift in Sources */,
 				4E3261DA2CE11BF500005B6A /* MapVC.swift in Sources */,

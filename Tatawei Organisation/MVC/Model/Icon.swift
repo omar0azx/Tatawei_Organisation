@@ -16,33 +16,7 @@ struct OpportunitiesIcon {
 struct Icon {
     
     var index: Int
-    
-    var opportunityIcon: (UIImage, UIColor) {
-        let colorsArray = [#colorLiteral(red: 0.968627451, green: 0.7294117647, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.968627451, green: 0.8705882353, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.8745098039, green: 0.968627451, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.7058823529, green: 0.968627451, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.6823529412, green: 0.968627451, blue: 0.8431372549, alpha: 1), #colorLiteral(red: 0.6823529412, green: 0.9450980392, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.6823529412, green: 0.7764705882, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.6823529412, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.9411764706, green: 0.6823529412, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.968627451, green: 0.6823529412, blue: 0.7843137255, alpha: 1)]
-        let icon = Icon.iconsArray[index]
-        switch icon.categories {
-        case .Arts:
-            return (icon.image[index], colorsArray[index])
-        case .Cultural:
-            return (icon.image[index], colorsArray[index])
-        case .Environmental:
-            return (icon.image[index], colorsArray[index])
-        case .Financial:
-            return (icon.image[index], colorsArray[index])
-        case .Healthy:
-            return (icon.image[index], colorsArray[index])
-        case .Social:
-            return (icon.image[index], colorsArray[index])
-        case .Sports:
-            return (icon.image[index], colorsArray[index])
-        case .Technical:
-            return (icon.image[index], colorsArray[index])
-        case .Tourism:
-            return (icon.image[index], colorsArray[index])
-        case .religious:
-            return (icon.image[index], colorsArray[index])
-        }
-    }
+    var category: InterestCategories
     
     static var iconsArray: [OpportunitiesIcon] = [
         OpportunitiesIcon(categories: .Arts, image: [#imageLiteral(resourceName: "art-1"), #imageLiteral(resourceName: "art-2"), #imageLiteral(resourceName: "art-3"), #imageLiteral(resourceName: "art-4"), #imageLiteral(resourceName: "art-5"), #imageLiteral(resourceName: "art-6"), #imageLiteral(resourceName: "art-7"), #imageLiteral(resourceName: "art-8")]),
@@ -56,6 +30,14 @@ struct Icon {
         OpportunitiesIcon(categories: .Tourism, image: [#imageLiteral(resourceName: "tourism-1"), #imageLiteral(resourceName: "tourism-2"), #imageLiteral(resourceName: "tourism-3"), #imageLiteral(resourceName: "tourism-4"), #imageLiteral(resourceName: "tourism-5"), #imageLiteral(resourceName: "tourism-6"), #imageLiteral(resourceName: "tourism-7"), #imageLiteral(resourceName: "tourism-8")]),
         OpportunitiesIcon(categories: .religious, image: [#imageLiteral(resourceName: "religious-8"), #imageLiteral(resourceName: "religious-6"), #imageLiteral(resourceName: "religious-5"), #imageLiteral(resourceName: "religious-1"), #imageLiteral(resourceName: "religious-2"), #imageLiteral(resourceName: "religious-3"), #imageLiteral(resourceName: "religious-4"), #imageLiteral(resourceName: "religious-7")])
     ]
+    
+    var opportunityIcon: (UIImage, UIColor) {
+        let colorsArray = [#colorLiteral(red: 0.968627451, green: 0.7294117647, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.968627451, green: 0.8705882353, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.8745098039, green: 0.968627451, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.7058823529, green: 0.968627451, blue: 0.6823529412, alpha: 1), #colorLiteral(red: 0.6823529412, green: 0.968627451, blue: 0.8431372549, alpha: 1), #colorLiteral(red: 0.6823529412, green: 0.9450980392, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.6823529412, green: 0.7764705882, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.6823529412, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.9411764706, green: 0.6823529412, blue: 0.968627451, alpha: 1), #colorLiteral(red: 0.968627451, green: 0.6823529412, blue: 0.7843137255, alpha: 1)]
+        if let opportunityIcon = Icon.iconsArray.first(where: { $0.categories == category }) {
+            return (opportunityIcon.image[index % opportunityIcon.image.count], colorsArray[index % colorsArray.count])
+        }
+        return (#imageLiteral(resourceName: "tatawei-intro"), .gray)
+    }
 }
 
 

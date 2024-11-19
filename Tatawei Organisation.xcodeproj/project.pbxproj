@@ -77,6 +77,15 @@
 		4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */; };
 		4EE4FFAA2CE78A550037B293 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */; };
 		4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6D3E62CE96B9A0063587C /* HomeCell.swift */; };
+		F2D22C9E2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22C9D2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift */; };
+		F2D22CA02CECE112003B4ECE /* OpportunityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22C9F2CECE112003B4ECE /* OpportunityHeaderView.swift */; };
+		F2D22CA22CECE143003B4ECE /* StudentsAttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA12CECE143003B4ECE /* StudentsAttendanceCell.swift */; };
+		F2D22CA42CECE182003B4ECE /* IntroAttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA32CECE182003B4ECE /* IntroAttendanceVC.swift */; };
+		F2D22CA62CECE1AC003B4ECE /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA52CECE1AC003B4ECE /* QRScannerVC.swift */; };
+		F2D22CA82CECE1CC003B4ECE /* StudentsAttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA72CECE1CC003B4ECE /* StudentsAttendanceVC.swift */; };
+		F2D22CAA2CECE1EB003B4ECE /* StudentInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA92CECE1EB003B4ECE /* StudentInfoVC.swift */; };
+		F2D22CAC2CECE215003B4ECE /* QRScannerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CAB2CECE211003B4ECE /* QRScannerError.swift */; };
+		F2D22CAE2CECE22F003B4ECE /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CAD2CECE22D003B4ECE /* QRScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +152,15 @@
 		4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityDataService.swift; sourceTree = "<group>"; };
 		4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
 		4EE6D3E62CE96B9A0063587C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		F2D22C9D2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityAttendanceCell.swift; sourceTree = "<group>"; };
+		F2D22C9F2CECE112003B4ECE /* OpportunityHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityHeaderView.swift; sourceTree = "<group>"; };
+		F2D22CA12CECE143003B4ECE /* StudentsAttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsAttendanceCell.swift; sourceTree = "<group>"; };
+		F2D22CA32CECE182003B4ECE /* IntroAttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAttendanceVC.swift; sourceTree = "<group>"; };
+		F2D22CA52CECE1AC003B4ECE /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
+		F2D22CA72CECE1CC003B4ECE /* StudentsAttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsAttendanceVC.swift; sourceTree = "<group>"; };
+		F2D22CA92CECE1EB003B4ECE /* StudentInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoVC.swift; sourceTree = "<group>"; };
+		F2D22CAB2CECE211003B4ECE /* QRScannerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerError.swift; sourceTree = "<group>"; };
+		F2D22CAD2CECE22D003B4ECE /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				4E249FB52CE7A7720098AB4C /* RankHeaderView.swift */,
+				F2D22C9F2CECE112003B4ECE /* OpportunityHeaderView.swift */,
 			);
 			path = CellsHeader;
 			sourceTree = "<group>";
@@ -273,6 +292,10 @@
 				4E249FB22CE7A4160098AB4C /* OrganisationTeamVC.swift */,
 				4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */,
 				4EB20A6B2CE39D3E00F7937A /* AboutVC.swift */,
+				F2D22CA32CECE182003B4ECE /* IntroAttendanceVC.swift */,
+				F2D22CA52CECE1AC003B4ECE /* QRScannerVC.swift */,
+				F2D22CA72CECE1CC003B4ECE /* StudentsAttendanceVC.swift */,
+				F2D22CA92CECE1EB003B4ECE /* StudentInfoVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -290,6 +313,8 @@
 		4E3261A42CE1181200005B6A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F2D22CAD2CECE22D003B4ECE /* QRScannerView.swift */,
+				F2D22CAB2CECE211003B4ECE /* QRScannerError.swift */,
 				4E32619F2CE1181200005B6A /* CustomTermsView.swift */,
 				4E3261A02CE1181200005B6A /* CustomAlertView.swift */,
 				4E3261A12CE1181200005B6A /* AppCheckProviderFactory.swift */,
@@ -350,6 +375,8 @@
 				4ED7FB9F2CE7FE5D00848821 /* IconCell.swift */,
 				4E0949492CEBACAA008DA911 /* OpportunityCell.swift */,
 				4EE6D3E62CE96B9A0063587C /* HomeCell.swift */,
+				F2D22C9D2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift */,
+				F2D22CA12CECE143003B4ECE /* StudentsAttendanceCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -455,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EB20A602CE277F400F7937A /* OfficialDataService.swift in Sources */,
+				F2D22CAC2CECE215003B4ECE /* QRScannerError.swift in Sources */,
 				4EB20A522CE25D9E00F7937A /* Official.swift in Sources */,
 				4EB20A532CE25D9E00F7937A /* Quations.swift in Sources */,
 				4EB20A542CE25D9E00F7937A /* Opportunity.swift in Sources */,
@@ -479,28 +507,36 @@
 				4EB20A5E2CE2703400F7937A /* UploadLogoVC.swift in Sources */,
 				4E3261DA2CE11BF500005B6A /* MapVC.swift in Sources */,
 				4E3261D32CE1191C00005B6A /* ContainerVC.swift in Sources */,
+				F2D22CAA2CECE1EB003B4ECE /* StudentInfoVC.swift in Sources */,
 				4E3261E02CE11ED200005B6A /* ForgetPasswordVC.swift in Sources */,
 				4E3261E82CE11FB400005B6A /* AttendanceVC.swift in Sources */,
 				4E3261B72CE1181200005B6A /* CustomAlertView.swift in Sources */,
 				4E3261B92CE1181200005B6A /* StringExtensions.swift in Sources */,
 				4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */,
+				F2D22CA82CECE1CC003B4ECE /* StudentsAttendanceVC.swift in Sources */,
 				4E3261BA2CE1181200005B6A /* CustomTermsView.swift in Sources */,
 				4EB20A6A2CE29E2900F7937A /* StorageService.swift in Sources */,
 				4E3261D82CE11BBC00005B6A /* IntroTataweiVC.swift in Sources */,
 				4E3261CF2CE1182600005B6A /* AuthService.swift in Sources */,
 				4E09494A2CEBACAA008DA911 /* OpportunityCell.swift in Sources */,
 				4E3261E42CE11F6B00005B6A /* HomeVC.swift in Sources */,
+				F2D22CA02CECE112003B4ECE /* OpportunityHeaderView.swift in Sources */,
 				4E3261DC2CE11D0C00005B6A /* OrganisationAccountVC.swift in Sources */,
 				4E3261E62CE11F9B00005B6A /* OpportunityManagementVC.swift in Sources */,
 				4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */,
 				4E3261D52CE1193200005B6A /* NavigationVC.swift in Sources */,
 				4E3261BC2CE1181200005B6A /* MainExtensions.swift in Sources */,
 				4ED7FB9E2CE7F84A00848821 /* OpportunityMakerVC.swift in Sources */,
+				F2D22CA62CECE1AC003B4ECE /* QRScannerVC.swift in Sources */,
+				F2D22CAE2CECE22F003B4ECE /* QRScannerView.swift in Sources */,
+				F2D22CA22CECE143003B4ECE /* StudentsAttendanceCell.swift in Sources */,
 				4E3261BD2CE1181200005B6A /* MessageView.swift in Sources */,
 				4E3261BE2CE1181200005B6A /* AppCheckProviderFactory.swift in Sources */,
 				4E249FBA2CE7A7F70098AB4C /* TeamCell.swift in Sources */,
 				4EE4FFAA2CE78A550037B293 /* InvitationCodeVC.swift in Sources */,
 				4EB20A6C2CE39D3E00F7937A /* AboutVC.swift in Sources */,
+				F2D22C9E2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift in Sources */,
+				F2D22CA42CECE182003B4ECE /* IntroAttendanceVC.swift in Sources */,
 				4E32618D2CE1174200005B6A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

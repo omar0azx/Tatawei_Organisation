@@ -29,7 +29,9 @@ class OpportunityDataService {
                     return
                 }
                 print("Opportunity added successfully!")
-                addOpportunityLocally(newOpportunity)
+                var myOpportunity = newOpportunity
+                myOpportunity.isStudentsAcceptanceFinished = false
+                saveOpportunityLocally(myOpportunity)
                 completion(true, nil)
             }
         } catch {
@@ -37,4 +39,68 @@ class OpportunityDataService {
             completion(false, error)
         }
     }
+    
+    func updateOpportunity(updatedData: Opportunity, completion: @escaping (_ error: Error?) -> Void) {
+        // Get reference to the opportunity's document in Firestore
+        let opportunityRef = FirestoreReference(.organisations).document(Organization.currentOrganization!.id)
+            .collection("opportunities").document(updatedData.id)
+        
+        opportunityRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let data = document.data(){
+                    
+                    var updatedOpportunity = updatedData
+                    
+                    // Convert updatedOpportunity to a dictionary using JSONEncoder
+                    do {
+                        let jsonData = try JSONEncoder().encode(updatedOpportunity)
+                        if let updatedOpportunityDict = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
+                            // Update Firestore with the new values
+                            opportunityRef.updateData(updatedOpportunityDict) { error in
+                                if let error = error {
+                                    print("Error updating opportunity data: \(error.localizedDescription)")
+                                    completion(error)
+                                } else {
+                                    
+                                    saveOpportunityLocally(updatedOpportunity)
+                                    print("Opportunity data successfully updated.")
+                                    completion(nil)
+                                }
+                            }
+                        }
+                    } catch {
+                        print("Error encoding opportunity data: \(error.localizedDescription)")
+                        completion(error)
+                    }
+                } else {
+                    print("Error value: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(error)
+                }
+                
+            } else {
+                print("Document does not exist or error fetching document: \(error?.localizedDescription ?? "Unknown error")")
+                completion(error)
+            }
+        }
+    }
+    
+    func deleteOpportunity(opportunityID: String, completion: @escaping (_ error: Error?) -> Void) {
+        // Get reference to the opportunity's document in Firestore
+        let opportunityRef = FirestoreReference(.organisations).document(Organization.currentOrganization!.id)
+            .collection("opportunities").document(opportunityID)
+        
+        opportunityRef.delete { error in
+            if let error = error {
+                // Handle the error
+                print("Error deleting opportunity: \(error.localizedDescription)")
+                completion(error)
+            } else {
+                // Successfully deleted
+                print("Opportunity with ID \(opportunityID) successfully deleted.")
+                deleteOpportunityLocally(opportunityID: opportunityID)
+                completion(nil)
+            }
+        }
+    }
+        
 }

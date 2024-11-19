@@ -31,6 +31,7 @@ struct Opportunity: Codable {
     var studentsNumber: Int
     var organizationID: String
     var organizationName: String
+    var isStudentsAcceptanceFinished: Bool?
     
     var formattedDate: Date? {
             let dateFormatter = DateFormatter()
@@ -53,21 +54,41 @@ struct Opportunity: Codable {
     }
 }
 
-func addOpportunityLocally(_ newOpportunity: Opportunity) {
-    saveOpportunitiesLocally([newOpportunity])
-}
-
-
-func saveOpportunitiesLocally(_ newOpportunities: [Opportunity]) {
+func saveOpportunityLocally(_ newOpportunity: Opportunity) {
 
     var currentOpportunities = Opportunity.allOpportunities ?? []
-    currentOpportunities.append(contentsOf: newOpportunities)
     
+    if let index = currentOpportunities.firstIndex(where: { $0.id == newOpportunity.id }) {
+        currentOpportunities[index] = newOpportunity
+    } else {
+        currentOpportunities.append(newOpportunity)
+    }
+    
+    saveOpportunitiesLocally(currentOpportunities)
+}
+
+func saveOpportunitiesLocally(_ opportunities: [Opportunity]) {
     let encoder = JSONEncoder()
     do {
-        let data = try encoder.encode(currentOpportunities)
+        let data = try encoder.encode(opportunities)
         UserDefaults.standard.set(data, forKey: kCURRENTOPPORTUNITIES)
     } catch {
         print("Error saving opportunities: \(error.localizedDescription)")
     }
 }
+
+func getOpportunityByID(_ opportunityID: String) -> Opportunity? {
+
+    let currentOpportunities = Opportunity.allOpportunities ?? []
+    return currentOpportunities.first { $0.id == opportunityID }
+}
+
+func deleteOpportunityLocally(opportunityID: String) {
+    
+    var currentOpportunities = Opportunity.allOpportunities ?? []
+    
+    currentOpportunities.removeAll { $0.id == opportunityID }
+    
+    saveOpportunitiesLocally(currentOpportunities)
+}
+

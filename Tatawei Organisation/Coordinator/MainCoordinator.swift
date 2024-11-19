@@ -136,6 +136,27 @@ final class MainCoordinator: Coordinator {
         }
     }
     
+    func viewOpportunityVC(opportunity: Opportunity) {
+        let vc = OpportunityVC.instantiate()
+        vc.coordinator = self
+        vc.opportunity = opportunity
+        vc.modalPresentationStyle = .fullScreen
+        navigationController.present(vc, animated: true)
+    }
+    
+    func viewEditOpportunityVC(opportunity: Opportunity) {
+        let vc = OpportunityMakerVC.instantiate()
+        vc.coordinator = self
+        vc.mode = .editOpportunity
+        vc.opportunity = opportunity
+        vc.modalPresentationStyle = .fullScreen
+        if let topViewController = navigationController.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.present(vc, animated: true, completion: nil)
+        }
+    }
+
     func viewIntroAttendanceVC(name: String, description: String) {
             let vc = IntroAttendanceVC.instantiate()
             vc.coordinator = self
@@ -166,6 +187,5 @@ final class MainCoordinator: Coordinator {
                 navigationController.present(vc, animated: true, completion: nil)
             }
         }
-    
 }
 

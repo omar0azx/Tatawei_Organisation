@@ -21,6 +21,8 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
     
     var coordinator: MainCoordinator?
     
+    var opportunity: Opportunity?
+    
     var selectedCategory: InterestCategories?
     
     var filteredImages: [UIImage] = []
@@ -36,6 +38,8 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
     var longitude: Double?
     
     //MARK: - IBOutleats
+    
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var backBTN: DesignableButton!
     
@@ -71,6 +75,8 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        definePageType()
+        
         opportunityDateTF.convertToDate()
         opportunityTimeTF.convertToTime()
         studentsNumberTF.convertToPicker(options: ["", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"])
@@ -79,6 +85,28 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
         cityTF.convertToPicker(options: cities)
         self.hideKeyboardWhenTappedAround()
 
+    }
+    
+    func definePageType() {
+        guard let opportunity = opportunity else {return}
+        if mode == .editOpportunity {
+            titleLabel.text = "تعديل فرصة"
+            opportunityNameTF.text = opportunity.name
+            opportunityDescriptionTF.text = opportunity.description
+            opportunityDateTF.text = opportunity.date
+            opportunityTimeTF.text = opportunity.time
+            studentsNumberTF.text = "\(opportunity.studentsNumber)"
+            opportunityHoursTF.text = "\(opportunity.hour)"
+            opportunityCategoriesTF.text = opportunity.category.rawValue
+            selectedCategory = opportunity.category
+            selectedIndex = IndexPath(row: opportunity.iconNumber, section: 0)
+            cityTF.text = opportunity.city.rawValue
+            locationInformation.text = opportunity.location
+            filterImages(for: opportunity.category)
+            
+        } else {
+            titleLabel.text = "إنشاء فرصة"
+        }
     }
     
 
@@ -242,12 +270,13 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
                 return // Do not increment
             }
             
+            let loadView = MessageView(message: "يرجى الإنتظار", animationName: "loading", animationTime: 1)
+            loadView.show(in: self.view)
+            
             if mode == .addNewOpportunity {
-                let loadView = MessageView(message: "يرجى الإنتظار", animationName: "loading", animationTime: 1)
-                loadView.show(in: self.view)
                 addNewOpportunity()
             } else {
-//                    updateUser()
+                updateOpportunity()
             }
             
             updateStepsUI()
@@ -283,6 +312,93 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
         }
         
     }
+    
+    private func updateOpportunity() {
+        
+        guard let opportunity = opportunity else {
+            print("No local opportunity found.")
+            return
+        }
+
+        // Gather current form input values
+        let updatedOpportunityName = opportunityNameTF.text ?? ""
+        let updatedOpportunityDescription = opportunityDescriptionTF.text ?? ""
+        let updatedOpportunityDate = opportunityDateTF.text ?? ""
+        let updatedOpportunityTime = opportunityTimeTF.text ?? ""
+        let updatedStudentsNumber = studentsNumberTF.text ?? ""
+        let updatedOpportunityHours = opportunityHoursTF.text ?? ""
+        let updatedOpportunityCategories = opportunityCategoriesTF.text ?? ""
+        let updatedInterests = selectedIndex?.row
+        let updatedCityTF = cityTF.text ?? ""
+
+        // Create a new Student object with the updated values
+        var updatedOpportunity = opportunity
+
+        var hasChanges = false
+
+        // Check if any of the profile details have changed
+        if updatedOpportunityName != opportunity.name {
+            updatedOpportunity.name = updatedOpportunityName
+            hasChanges = true
+        }
+
+        if updatedOpportunityDescription != opportunity.description {
+            updatedOpportunity.description = updatedOpportunityDescription
+            hasChanges = true
+        }
+        
+        if updatedOpportunityDate != opportunity.date {
+            updatedOpportunity.date = updatedOpportunityDate
+            hasChanges = true
+        }
+        
+        if updatedOpportunityTime != opportunity.time {
+            updatedOpportunity.time = updatedOpportunityTime
+            hasChanges = true
+        }
+        
+        if updatedStudentsNumber != "\(opportunity.studentsNumber)" {
+            updatedOpportunity.studentsNumber = Int(updatedStudentsNumber) ?? 0
+            hasChanges = true
+        }
+        
+        if updatedOpportunityHours != "\(opportunity.hour)" {
+            updatedOpportunity.hour = Int(updatedOpportunityHours) ?? 0
+            hasChanges = true
+        }
+        
+        if updatedOpportunityCategories != opportunity.category.rawValue {
+            updatedOpportunity.category = InterestCategories(rawValue: updatedOpportunityCategories)!
+            hasChanges = true
+        }
+
+        // Check if the selected interests have changed
+        if updatedInterests != opportunity.iconNumber {
+            updatedOpportunity.iconNumber = updatedInterests!
+            hasChanges = true
+        }
+
+        // If there is no change, show a message and return
+        if !hasChanges {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                let errorView = MessageView(message: "لا توجد تغييرات لتحديثها", animationName: "warning", animationTime: 1)
+                errorView.show(in: self.view)
+            }
+            print("No changes detected.")
+            return
+        }
+        
+        OpportunityDataService.shared.updateOpportunity(updatedData: updatedOpportunity) { error in
+            //Show Success/Failure Message After All Updates
+                let successView = MessageView(message: "تم تحديث بياناتك بنجاح", animationName: "correct", animationTime: 1)
+                successView.show(in: self.view)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.3) {
+                    self.dismiss(animated: true)
+                }
+            }
+    }
+
 
 }
 

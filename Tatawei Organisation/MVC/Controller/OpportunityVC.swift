@@ -98,21 +98,19 @@ class OpportunityVC: UIViewController, Storyboarded {
     //MARK: - Functions
     
     func getOpportunityInformaion() {
-        if let opportunityID = opportunity?.id {
-            if let opportunity = getOpportunityByID(opportunityID) {
-                opportunityImage.image = Icon(index: opportunity.iconNumber, category: opportunity.category).opportunityIcon.0
-                opportunityView.backgroundColor = Icon(index: opportunity.iconNumber, category: opportunity.category).opportunityIcon.1
-                opportunityName.text = opportunity.name
-                opportunityDescription.text = opportunity.description
-                opportunityTime.text = opportunity.time
-                opportunityHour.text = "ساعات \(opportunity.hour)"
-                opportunityLocation.text = opportunity.location
-            } else {
-                
-            }
+        if let opportunityID = opportunity?.id, let opportunity = OpportunityRealmService.shared.getOpportunityById(opportunityID) {
+            opportunityImage.image = Icon(index: opportunity.iconNumber, category: opportunity.category).opportunityIcon.0
+            opportunityView.backgroundColor = Icon(index: opportunity.iconNumber, category: opportunity.category).opportunityIcon.1
+            opportunityName.text = opportunity.name
+            opportunityDescription.text = opportunity.description
+            opportunityTime.text = opportunity.time
+            opportunityHour.text = "ساعات \(opportunity.hour)"
+            opportunityLocation.text = opportunity.location
+        } else {
+            
         }
     }
     
     
-
+    
 }

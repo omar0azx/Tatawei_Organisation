@@ -7,19 +7,16 @@
 
 import UIKit
 
-class StudentsAttendanceCell: UITableViewCell {
+protocol StudentsAttendanceDelegate: AnyObject {
+    func chooceNumberTapped(at index:IndexPath)
+}
 
-    var attendanceButtonTapped: ((Bool) -> Void)?
-        private var isButtonSelected: Bool = false {
-            didSet {
-                // Update the button's appearance whenever the state changes
-                if isButtonSelected {
-                    attendanceBtn.setImage(UIImage(named: "checkmark"), for: .normal) // Set the image
-                } else {
-                    attendanceBtn.setImage(nil, for: .normal) // Remove the image
-                }
-            }
-        }
+//checkmark
+class StudentsAttendanceCell: UITableViewCell {
+    
+    weak var delegate: StudentsAttendanceDelegate?
+    var indexPath:IndexPath!
+        
     @IBOutlet weak var studentImage: UIImageView!
     @IBOutlet weak var attendanceBtn: UIButton!
     @IBOutlet weak var studentName: UILabel!
@@ -29,7 +26,7 @@ class StudentsAttendanceCell: UITableViewCell {
         studentName.text = name
         numberingLabel.text = "\(numbering)"
         studentImage.image = image
-        isButtonSelected = isAttended
+        attendanceBtn.setImage(isAttended ? UIImage(named: "checkmark") : UIImage(), for: .normal)
     }
 
     override func awakeFromNib() {
@@ -43,20 +40,9 @@ class StudentsAttendanceCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    private func updateButtonAppearance() {
-        if isButtonSelected {
-            attendanceBtn.setImage(UIImage(named: "checkmark"), for: .normal) // Show checkmark
-        } else {
-            attendanceBtn.setImage(nil, for: .normal) // Remove checkmark
-        }
-    }
-    
     
     @IBAction func StudentAttendanceAction(_ sender: Any) {
-        isButtonSelected.toggle()
-        attendanceButtonTapped?(isButtonSelected)
-
+        delegate?.chooceNumberTapped(at: indexPath)
     }
     
-
 }

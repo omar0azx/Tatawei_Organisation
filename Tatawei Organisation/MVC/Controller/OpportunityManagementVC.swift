@@ -27,6 +27,7 @@ class OpportunityManagementVC: UIViewController, Storyboarded {
 
         // Do any additional setup after loading the view.
         loadOpportunities()
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -47,12 +48,10 @@ class OpportunityManagementVC: UIViewController, Storyboarded {
     
     func loadOpportunities() {
         // Retrieve all saved opportunities
-        if let allOpportunities = Opportunity.allOpportunities {
-            self.finishedOpportunities = allOpportunities.filter{$0.status == .finished}
-            self.opportunities = allOpportunities.filter{$0.status == .open || $0.status == .inProgress}
-            tableView.reloadData()
-        }
-        
+        let allOpportunities = OpportunityRealmService.shared.getAllOpportunities()
+        self.finishedOpportunities = allOpportunities.filter{$0.status == .finished}
+        self.opportunities = allOpportunities.filter{$0.status == .open || $0.status == .inProgress}
+        tableView.reloadData()
     }
     
 }

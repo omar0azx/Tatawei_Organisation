@@ -11,8 +11,8 @@ class IntroAttendanceVC: UIViewController, Storyboarded {
 
     //MARK: - Varibales
     var coordinator: MainCoordinator?
-    var opportunityNameText: String?
-    var opportunityDescriptionText: String?
+    
+    var opportunity: Opportunity?
 
     //MARK: - @IBOutlet
     @IBOutlet weak var opportunityName: UILabel!
@@ -23,6 +23,7 @@ class IntroAttendanceVC: UIViewController, Storyboarded {
         super.viewDidLoad()
         
         setUpUI()
+        getOpportunityStudents()
     }
     
     //MARK: - @@IBAction
@@ -32,20 +33,35 @@ class IntroAttendanceVC: UIViewController, Storyboarded {
     }
 
     @IBAction func scanBarcode(_ sender: Any) {
-
-        coordinator?.viewQRScannerVC()
+        guard let opportunity = opportunity else {return}
+        coordinator?.viewQRScannerVC(opportunityID: opportunity.id)
     }
     @IBAction func showAllStudentes(_ sender: Any) {
-
-         coordinator?.viewStudentsAttendanceVC()
+        if let opportunity = opportunity {
+            coordinator?.viewStudentsAttendanceVC(opportunityID: opportunity.id)
+        }
         
     }
     
     //MARK: - Functions
+    
     func setUpUI() {
-        opportunityName.text = opportunityNameText
-        opportunityDecription.text = opportunityDescriptionText
-
+        if let opportunity = opportunity {
+            opportunityName.text = opportunity.name
+            opportunityDecription.text = opportunity.description
+        }
+    }
+    
+    func getOpportunityStudents() {
+        if let opportunity = opportunity, let organisation = Organization.currentOrganization {
+            StudentDataService.shared.getStudentsForAttendance(organisationID: organisation.id, opportunityID: opportunity.id) { error in
+                if error != nil {
+                    print("The students is empty")
+                } else {
+                    print("Success save students")
+                }
+            }
+        }
     }
     
 }

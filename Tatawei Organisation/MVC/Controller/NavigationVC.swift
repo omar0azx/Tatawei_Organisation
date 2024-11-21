@@ -27,6 +27,8 @@ class NavigationVC: ContainerVC, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        checkOpportunityStatus()
         updateOrganisationData()
         setupCurvedView()
         self.navigate(to: 0)
@@ -157,6 +159,16 @@ class NavigationVC: ContainerVC, Storyboarded {
                 } else {
                     print("Have problem when update locally storage")
                 }
+            }
+        }
+    }
+    
+    func checkOpportunityStatus() {
+        OpportunityDataService.shared.checkAndUpdateOpportunitiesStatus { error in
+            if error == nil {
+                print("Updated opportunity status")
+            } else {
+                print("Cat't updated opportunity status")
             }
         }
     }

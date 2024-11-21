@@ -13,10 +13,6 @@ enum Gender: String, Codable {
     case female = "انثى"
 }
 
-struct StudentOpportunity: Codable {
-    var isAccepted: Bool
-}
- 
 struct Official: Codable {
     
     var id: String

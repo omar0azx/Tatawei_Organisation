@@ -38,57 +38,28 @@ struct Opportunity: Codable {
             dateFormatter.dateFormat = "yyyy-MM-dd" // Use your date format here
             return dateFormatter.date(from: date)
         }
-    
-    static var allOpportunities: [Opportunity]? {
-            if let data = UserDefaults.standard.data(forKey: kCURRENTOPPORTUNITIES) {
-                let decoder = JSONDecoder()
-                do {
-                    let opportunitiesObject = try decoder.decode([Opportunity].self, from: data)
-                    return opportunitiesObject
-                } catch {
-                    print(error.localizedDescription)
-                }
-            
-        }
-        return nil
+}
+
+extension Opportunity {
+    func toRealmObject() -> OpportunityObject {
+        let object = OpportunityObject()
+        object.id = id
+        object.name = name
+        object.opportunityDescription = description
+        object.date = date
+        object.time = time
+        object.hour = hour
+        object.city = city.rawValue // Enum raw value
+        object.status = status.rawValue
+        object.category = category.rawValue
+        object.iconNumber = iconNumber
+        object.location = location
+        object.latitude = latitude
+        object.longitude = longitude
+        object.studentsNumber = studentsNumber
+        object.organizationID = organizationID
+        object.organizationName = organizationName
+        object.isStudentsAcceptanceFinished = isStudentsAcceptanceFinished
+        return object
     }
 }
-
-func saveOpportunityLocally(_ newOpportunity: Opportunity) {
-
-    var currentOpportunities = Opportunity.allOpportunities ?? []
-    
-    if let index = currentOpportunities.firstIndex(where: { $0.id == newOpportunity.id }) {
-        currentOpportunities[index] = newOpportunity
-    } else {
-        currentOpportunities.append(newOpportunity)
-    }
-    
-    saveOpportunitiesLocally(currentOpportunities)
-}
-
-func saveOpportunitiesLocally(_ opportunities: [Opportunity]) {
-    let encoder = JSONEncoder()
-    do {
-        let data = try encoder.encode(opportunities)
-        UserDefaults.standard.set(data, forKey: kCURRENTOPPORTUNITIES)
-    } catch {
-        print("Error saving opportunities: \(error.localizedDescription)")
-    }
-}
-
-func getOpportunityByID(_ opportunityID: String) -> Opportunity? {
-
-    let currentOpportunities = Opportunity.allOpportunities ?? []
-    return currentOpportunities.first { $0.id == opportunityID }
-}
-
-func deleteOpportunityLocally(opportunityID: String) {
-    
-    var currentOpportunities = Opportunity.allOpportunities ?? []
-    
-    currentOpportunities.removeAll { $0.id == opportunityID }
-    
-    saveOpportunitiesLocally(currentOpportunities)
-}
-

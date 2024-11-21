@@ -156,36 +156,37 @@ final class MainCoordinator: Coordinator {
             navigationController.present(vc, animated: true, completion: nil)
         }
     }
-
-    func viewIntroAttendanceVC(name: String, description: String) {
-            let vc = IntroAttendanceVC.instantiate()
-            vc.coordinator = self
-            vc.opportunityNameText = name
-            vc.opportunityDescriptionText = description
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController.present(vc, animated: true)
+    
+    func viewIntroAttendanceVC(opportunity: Opportunity) {
+        let vc = IntroAttendanceVC.instantiate()
+        vc.coordinator = self
+        vc.opportunity = opportunity
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController.present(vc, animated: true)
+    }
+    
+    func viewQRScannerVC(opportunityID: String) {
+        let vc = QRScannerVC.instantiate()
+        vc.coordinator = self
+        vc.opportunityID = opportunityID
+        vc.modalPresentationStyle = .fullScreen
+        if let topViewController = navigationController.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.present(vc, animated: true, completion: nil)
         }
-
-        func viewQRScannerVC() {
-            let vc = QRScannerVC.instantiate()
-            vc.coordinator = self
-            vc.modalPresentationStyle = .fullScreen
-            if let topViewController = navigationController.presentedViewController {
-                topViewController.present(vc, animated: true, completion: nil)
-            } else {
-                navigationController.present(vc, animated: true, completion: nil)
-            }
+    }
+    
+    func viewStudentsAttendanceVC(opportunityID: String) {
+        let vc = StudentsAttendanceVC.instantiate()
+        vc.coordinator = self
+        vc.opportunityID = opportunityID
+        vc.modalPresentationStyle = .fullScreen
+        if let topViewController = navigationController.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.present(vc, animated: true, completion: nil)
         }
-        
-        func viewStudentsAttendanceVC() {
-            let vc = StudentsAttendanceVC.instantiate()
-            vc.coordinator = self
-            vc.modalPresentationStyle = .fullScreen
-            if let topViewController = navigationController.presentedViewController {
-                topViewController.present(vc, animated: true, completion: nil)
-            } else {
-                navigationController.present(vc, animated: true, completion: nil)
-            }
-        }
+    }
 }
 

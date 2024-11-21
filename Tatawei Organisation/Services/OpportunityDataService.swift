@@ -31,7 +31,7 @@ class OpportunityDataService {
                 print("Opportunity added successfully!")
                 var myOpportunity = newOpportunity
                 myOpportunity.isStudentsAcceptanceFinished = false
-                saveOpportunityLocally(myOpportunity)
+                OpportunityRealmService.shared.saveNewOpportunity(myOpportunity)
                 completion(true, nil)
             }
         } catch {
@@ -47,9 +47,9 @@ class OpportunityDataService {
         
         opportunityRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                if let data = document.data(){
+                if document.data() != nil{
                     
-                    var updatedOpportunity = updatedData
+                    let updatedOpportunity = updatedData
                     
                     // Convert updatedOpportunity to a dictionary using JSONEncoder
                     do {
@@ -61,8 +61,7 @@ class OpportunityDataService {
                                     print("Error updating opportunity data: \(error.localizedDescription)")
                                     completion(error)
                                 } else {
-                                    
-                                    saveOpportunityLocally(updatedOpportunity)
+                                    OpportunityRealmService.shared.updateOpportunity(updatedOpportunity)
                                     print("Opportunity data successfully updated.")
                                     completion(nil)
                                 }
@@ -84,6 +83,45 @@ class OpportunityDataService {
         }
     }
     
+    func checkAndUpdateOpportunitiesStatus(completion: @escaping (_ error: Error?) -> Void) {
+
+        let opportunities = OpportunityRealmService.shared.getAllOpportunities()
+        let todayDate = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
+        
+        for opportunity in opportunities {
+            if opportunity.date < todayDate {
+                self.updateOpportunityStatus(opportunityID: opportunity.id, status: .finished)
+            }
+        }
+        
+        completion(nil)
+    }
+
+    
+    func updateOpportunityStatus(opportunityID: String, status: OpportunityStatus) {
+        let opportunityRef = FirestoreReference(.organisations).document(Organization.currentOrganization!.id).collection("opportunities").document(opportunityID)
+        
+        opportunityRef.updateData([
+            "status": status.rawValue
+        ]) { error in
+            if let error = error {
+                print("Error updating opportunity status: \(error.localizedDescription)")
+            } else {
+                print("Opportunity status updated to \(status)")
+                if status == .finished {
+                    StudentDataService.shared.updateStudentsAttended(opportunityID: opportunityID, studentIDs: StudentRealmService.shared.getAllStudentIDs()) { error in
+                        if let error = error {
+                            print("Error updating attended status: \(error.localizedDescription)")
+                        } else {
+                            StudentRealmService.shared.deleteStudentsForOpportunity(opportunityID: opportunityID)
+                        }
+                    }
+                }
+                OpportunityRealmService.shared.updateOpportunityStatusById(opportunityID, status: status)
+            }
+        }
+    }
+    
     func deleteOpportunity(opportunityID: String, completion: @escaping (_ error: Error?) -> Void) {
         // Get reference to the opportunity's document in Firestore
         let opportunityRef = FirestoreReference(.organisations).document(Organization.currentOrganization!.id)
@@ -97,10 +135,10 @@ class OpportunityDataService {
             } else {
                 // Successfully deleted
                 print("Opportunity with ID \(opportunityID) successfully deleted.")
-                deleteOpportunityLocally(opportunityID: opportunityID)
+                OpportunityRealmService.shared.deleteOpportunityById(opportunityID)
                 completion(nil)
             }
         }
     }
-        
+    
 }

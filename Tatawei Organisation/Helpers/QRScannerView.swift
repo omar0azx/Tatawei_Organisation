@@ -219,7 +219,7 @@ public class QRScannerView: UIView {
     private func setupImageViews() {
         let width = self.bounds.width * 0.618
         let x = self.bounds.width * 0.191
-        let y = self.bounds.height * 0.191
+        let y = self.bounds.height * 0.3
         focusImageView = UIImageView(frame: CGRect(x: x, y: y, width: width, height: width))
         focusImageView.image = focusImage ?? UIImage(named: "scan_qr_focus", in: .module, compatibleWith: nil)
         addSubview(focusImageView)

@@ -49,13 +49,19 @@
 		4E3261EA2CE11FCB00005B6A /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3261E92CE11FCB00005B6A /* ProfileVC.swift */; };
 		4E41D8D82CEBD1DB00900C27 /* OpportunityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E41D8D72CEBD1DB00900C27 /* OpportunityVC.swift */; };
 		4E465D532CE3ACC800A3A986 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E465D522CE3ACC800A3A986 /* SettingsCell.swift */; };
+		4E9321B22CED1F02007ED383 /* OpportunityRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321B12CED1F02007ED383 /* OpportunityRealmService.swift */; };
+		4E9321B42CED2029007ED383 /* OpportunityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321B32CED2021007ED383 /* OpportunityObject.swift */; };
+		4E9321BA2CED26B8007ED383 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9321B92CED26B8007ED383 /* RealmSwift */; };
+		4E9321BB2CED26B8007ED383 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4E9321B92CED26B8007ED383 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		4E9321BE2CED2B95007ED383 /* StudentRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321BD2CED2B8B007ED383 /* StudentRealmService.swift */; };
+		4E9321C02CED2C74007ED383 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321BF2CED2C6F007ED383 /* Student.swift */; };
+		4E9321C22CED3B70007ED383 /* StudentDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321C12CED3B69007ED383 /* StudentDataService.swift */; };
 		4EB20A3F2CE25CCB00F7937A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20A3E2CE25CCB00F7937A /* GoogleService-Info.plist */; };
 		4EB20A422CE25D4B00F7937A /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB20A412CE25D4B00F7937A /* FirebaseAppCheck */; };
 		4EB20A442CE25D4B00F7937A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB20A432CE25D4B00F7937A /* FirebaseAuth */; };
 		4EB20A462CE25D4B00F7937A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB20A452CE25D4B00F7937A /* FirebaseFirestore */; };
 		4EB20A482CE25D4B00F7937A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB20A472CE25D4B00F7937A /* FirebaseStorage */; };
 		4EB20A522CE25D9E00F7937A /* Official.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A512CE25D9E00F7937A /* Official.swift */; };
-		4EB20A532CE25D9E00F7937A /* Quations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A502CE25D9E00F7937A /* Quations.swift */; };
 		4EB20A542CE25D9E00F7937A /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A4E2CE25D9E00F7937A /* Opportunity.swift */; };
 		4EB20A552CE25D9E00F7937A /* InterestCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A4C2CE25D9E00F7937A /* InterestCategories.swift */; };
 		4EB20A562CE25D9E00F7937A /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20A4D2CE25D9E00F7937A /* MenuItem.swift */; };
@@ -87,6 +93,20 @@
 		F2D22CAC2CECE215003B4ECE /* QRScannerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CAB2CECE211003B4ECE /* QRScannerError.swift */; };
 		F2D22CAE2CECE22F003B4ECE /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CAD2CECE22D003B4ECE /* QRScannerView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4E9321B62CED24BE007ED383 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4E9321BB2CED26B8007ED383 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4E0949492CEBACAA008DA911 /* OpportunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityCell.swift; sourceTree = "<group>"; };
@@ -131,6 +151,11 @@
 		4E3261E92CE11FCB00005B6A /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		4E41D8D72CEBD1DB00900C27 /* OpportunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityVC.swift; sourceTree = "<group>"; };
 		4E465D522CE3ACC800A3A986 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		4E9321B12CED1F02007ED383 /* OpportunityRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityRealmService.swift; sourceTree = "<group>"; };
+		4E9321B32CED2021007ED383 /* OpportunityObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityObject.swift; sourceTree = "<group>"; };
+		4E9321BD2CED2B8B007ED383 /* StudentRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRealmService.swift; sourceTree = "<group>"; };
+		4E9321BF2CED2C6F007ED383 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		4E9321C12CED3B69007ED383 /* StudentDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDataService.swift; sourceTree = "<group>"; };
 		4EB20A3E2CE25CCB00F7937A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4EB20A492CE25D9E00F7937A /* Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badges.swift; sourceTree = "<group>"; };
 		4EB20A4A2CE25D9E00F7937A /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
@@ -139,7 +164,6 @@
 		4EB20A4D2CE25D9E00F7937A /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		4EB20A4E2CE25D9E00F7937A /* Opportunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
 		4EB20A4F2CE25D9E00F7937A /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		4EB20A502CE25D9E00F7937A /* Quations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quations.swift; sourceTree = "<group>"; };
 		4EB20A512CE25D9E00F7937A /* Official.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Official.swift; sourceTree = "<group>"; };
 		4EB20A5D2CE2703400F7937A /* UploadLogoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadLogoVC.swift; sourceTree = "<group>"; };
 		4EB20A5F2CE277F400F7937A /* OfficialDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialDataService.swift; sourceTree = "<group>"; };
@@ -175,6 +199,7 @@
 				4EB20A462CE25D4B00F7937A /* FirebaseFirestore in Frameworks */,
 				4ED7FBA82CE9196000848821 /* GooglePlacesSwift in Frameworks */,
 				4EB20A442CE25D4B00F7937A /* FirebaseAuth in Frameworks */,
+				4E9321BA2CED26B8007ED383 /* RealmSwift in Frameworks */,
 				4ED7FBA32CE9184900848821 /* GoogleMaps in Frameworks */,
 				4EB20A482CE25D4B00F7937A /* FirebaseStorage in Frameworks */,
 			);
@@ -196,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				4E32618B2CE1174200005B6A /* Tatawei Organisation */,
+				4E9321B82CED26B8007ED383 /* Frameworks */,
 				4E3261572CE0310900005B6A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -254,8 +280,9 @@
 				4EB20A4C2CE25D9E00F7937A /* InterestCategories.swift */,
 				4EB20A4D2CE25D9E00F7937A /* MenuItem.swift */,
 				4EB20A4E2CE25D9E00F7937A /* Opportunity.swift */,
+				4E9321B32CED2021007ED383 /* OpportunityObject.swift */,
 				4EB20A4F2CE25D9E00F7937A /* Organization.swift */,
-				4EB20A502CE25D9E00F7937A /* Quations.swift */,
+				4E9321BF2CED2C6F007ED383 /* Student.swift */,
 				4EB20A512CE25D9E00F7937A /* Official.swift */,
 			);
 			path = Model;
@@ -362,7 +389,9 @@
 				4E3261C92CE1182600005B6A /* AuthService.swift */,
 				4EB20A5F2CE277F400F7937A /* OfficialDataService.swift */,
 				4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */,
+				4E9321C12CED3B69007ED383 /* StudentDataService.swift */,
 				4EB20A692CE29E2900F7937A /* StorageService.swift */,
+				4E9321BC2CED2B01007ED383 /* Realm */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -381,6 +410,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		4E9321B82CED26B8007ED383 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E9321BC2CED2B01007ED383 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				4E9321BD2CED2B8B007ED383 /* StudentRealmService.swift */,
+				4E9321B12CED1F02007ED383 /* OpportunityRealmService.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -391,6 +436,7 @@
 				4E3261522CE0310900005B6A /* Sources */,
 				4E3261532CE0310900005B6A /* Frameworks */,
 				4E3261542CE0310900005B6A /* Resources */,
+				4E9321B62CED24BE007ED383 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -407,6 +453,7 @@
 				4ED7FBA22CE9184900848821 /* GoogleMaps */,
 				4ED7FBA52CE9196000848821 /* GooglePlaces */,
 				4ED7FBA72CE9196000848821 /* GooglePlacesSwift */,
+				4E9321B92CED26B8007ED383 /* RealmSwift */,
 			);
 			productName = "Tatawei Organisation";
 			productReference = 4E3261562CE0310900005B6A /* Tatawei Organisation.app */;
@@ -442,6 +489,7 @@
 				4EB20A402CE25D4B00F7937A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4ED7FBA12CE9184900848821 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 				4ED7FBA42CE9196000848821 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
+				4E9321AC2CED1ED7007ED383 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4E3261572CE0310900005B6A /* Products */;
@@ -484,8 +532,9 @@
 				4EB20A602CE277F400F7937A /* OfficialDataService.swift in Sources */,
 				F2D22CAC2CECE215003B4ECE /* QRScannerError.swift in Sources */,
 				4EB20A522CE25D9E00F7937A /* Official.swift in Sources */,
-				4EB20A532CE25D9E00F7937A /* Quations.swift in Sources */,
 				4EB20A542CE25D9E00F7937A /* Opportunity.swift in Sources */,
+				4E9321C22CED3B70007ED383 /* StudentDataService.swift in Sources */,
+				4E9321BE2CED2B95007ED383 /* StudentRealmService.swift in Sources */,
 				4EB20A552CE25D9E00F7937A /* InterestCategories.swift in Sources */,
 				4EB20A562CE25D9E00F7937A /* MenuItem.swift in Sources */,
 				4EB20A572CE25D9E00F7937A /* Cities.swift in Sources */,
@@ -504,6 +553,7 @@
 				4E465D532CE3ACC800A3A986 /* SettingsCell.swift in Sources */,
 				4E41D8D82CEBD1DB00900C27 /* OpportunityVC.swift in Sources */,
 				4E3261B62CE1181200005B6A /* Constants.swift in Sources */,
+				4E9321B22CED1F02007ED383 /* OpportunityRealmService.swift in Sources */,
 				4EB20A5E2CE2703400F7937A /* UploadLogoVC.swift in Sources */,
 				4E3261DA2CE11BF500005B6A /* MapVC.swift in Sources */,
 				4E3261D32CE1191C00005B6A /* ContainerVC.swift in Sources */,
@@ -523,6 +573,7 @@
 				F2D22CA02CECE112003B4ECE /* OpportunityHeaderView.swift in Sources */,
 				4E3261DC2CE11D0C00005B6A /* OrganisationAccountVC.swift in Sources */,
 				4E3261E62CE11F9B00005B6A /* OpportunityManagementVC.swift in Sources */,
+				4E9321C02CED2C74007ED383 /* Student.swift in Sources */,
 				4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */,
 				4E3261D52CE1193200005B6A /* NavigationVC.swift in Sources */,
 				4E3261BC2CE1181200005B6A /* MainExtensions.swift in Sources */,
@@ -530,6 +581,7 @@
 				F2D22CA62CECE1AC003B4ECE /* QRScannerVC.swift in Sources */,
 				F2D22CAE2CECE22F003B4ECE /* QRScannerView.swift in Sources */,
 				F2D22CA22CECE143003B4ECE /* StudentsAttendanceCell.swift in Sources */,
+				4E9321B42CED2029007ED383 /* OpportunityObject.swift in Sources */,
 				4E3261BD2CE1181200005B6A /* MessageView.swift in Sources */,
 				4E3261BE2CE1181200005B6A /* AppCheckProviderFactory.swift in Sources */,
 				4E249FBA2CE7A7F70098AB4C /* TeamCell.swift in Sources */,
@@ -780,6 +832,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		4E9321AC2CED1ED7007ED383 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		4EB20A402CE25D4B00F7937A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -816,6 +876,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E2406BC2CE242B6009B854A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		4E9321B92CED26B8007ED383 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E9321AC2CED1ED7007ED383 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		4EB20A412CE25D4B00F7937A /* FirebaseAppCheck */ = {
 			isa = XCSwiftPackageProductDependency;

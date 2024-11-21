@@ -7,26 +7,16 @@
 
 import UIKit
 
-struct Student {
-    let id: String
-    let name: String
-    let image: UIImage
-    var isAttended: Bool
-}
-
-class StudentsAttendanceVC: UIViewController, Storyboarded {
+class StudentsAttendanceVC: UIViewController, Storyboarded, StudentsAttendanceDelegate {
     
     //MARK: - Varibales
     var coordinator: MainCoordinator?
-    var allStudents: [Student] = [
-        Student(id: "111", name: "وسام شكري قدح", image: UIImage(named:"personal")!, isAttended: false),
-        Student(id: "222", name: "جاستن بيبر الغامدي", image: UIImage(named:"personal")!, isAttended: false),
-        Student(id: "333", name: "بيلي ايليش الزهراني", image: UIImage(named:"personal")!, isAttended: false),
-        Student(id: "444", name: "ترامب العتيبي", image: UIImage(named: "personal")!, isAttended: false),
-        Student(id: "555", name: "معاذ هند القحطاني", image: UIImage(named: "personal")!, isAttended: false),
-        Student(id: "666", name: "توباك الحربي", image: UIImage(named: "personal")!, isAttended: false)
-    ]
+    var opportunityID: String?
+    var opportunityStudents: [Student] = []
     var filteredStudents: [Student] = []
+    
+    var indexSearchedContacts: Int?
+    var indexContactsArray: Int?
 
     //MARK: - IBOutleats
     @IBOutlet weak var tableView: UITableView!
@@ -35,31 +25,38 @@ class StudentsAttendanceVC: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        filteredStudents = allStudents
-
+        loadAllStudents()
         searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-
+        self.hideKeyboardWhenTappedAround()
     }
+    
     //MARK: - @IBAction
     @IBAction func didPressedView(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
 
-    
-    
     //MARK: - Functions
+    
+    func loadAllStudents() {
+        if let opportunityID = opportunityID {
+            let allStudents = StudentRealmService.shared.getStudentsForOpportunity(opportunityID: opportunityID)
+            print(allStudents)
+            self.opportunityStudents = allStudents
+            filteredStudents = opportunityStudents
+            tableView.reloadData()
+        }
+    }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
           guard let query = textField.text?.lowercased(), !query.isEmpty else {
               // If the text field is empty, show all students
-              filteredStudents = allStudents
+              filteredStudents = opportunityStudents
               tableView.reloadData()
               return
           }
           
           // Filter students by name
-          filteredStudents = allStudents.filter { $0.name.lowercased().contains(query) }
+          filteredStudents = opportunityStudents.filter { $0.name.lowercased().contains(query) }
           tableView.reloadData()
       }
 
@@ -71,7 +68,7 @@ extension StudentsAttendanceVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 70
     }
 
     
@@ -80,20 +77,27 @@ extension StudentsAttendanceVC: UITableViewDelegate, UITableViewDataSource {
         let rank = indexPath.row + 1
         let student = filteredStudents[indexPath.row]
         
-        cell.config(image: student.image, name: student.name, numbering: rank, isAttended: student.isAttended)
+        cell.config(image: student.gender == .male ? #imageLiteral(resourceName: "man.svg") : #imageLiteral(resourceName: "women.svg"), name: student.name, numbering: rank, isAttended: student.isAttended ?? false)
         
-        cell.attendanceButtonTapped = { [weak self] isAttended in
-            guard let self = self else { return }
-            
-            // Find the student in `allStudents` and toggle their state
-            if let index = self.allStudents.firstIndex(where: { $0.name == student.name }) {
-                self.allStudents[index].isAttended = isAttended
-            }
-
-        }
+        cell.indexPath = indexPath
+        cell.delegate = self
+ 
         return cell
     }
     
+    func chooceNumberTapped(at index: IndexPath) {
+        // Toggle attendance for the tapped student
+        let student = filteredStudents[index.row]
+        let isAttended = !(student.isAttended ?? false)
+        filteredStudents[index.row].isAttended = isAttended
+        
+        // Sync changes to opportunityStudents
+        if let studentIndex = opportunityStudents.firstIndex(where: { $0.id == student.id }) {
+            opportunityStudents[studentIndex].isAttended = isAttended
+        }
+        StudentRealmService.shared.updateIsAttendedForStudentInOpportunity(studentID: student.id, opportunityID: opportunityID!, isAttended: isAttended)
+        tableView.reloadRows(at: [index], with: .automatic)
+    }
     
 }
 

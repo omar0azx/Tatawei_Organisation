@@ -12,6 +12,7 @@ class QRScannerVC: UIViewController, Storyboarded {
     
     //MARK: - Varibales
     var coordinator: MainCoordinator?
+    var opportunityID: String?
 
     //MARK: - @IBOutlet
     @IBOutlet weak var qrScannerView: QRScannerView!
@@ -22,7 +23,7 @@ class QRScannerVC: UIViewController, Storyboarded {
         setupQRScanner()
     }
     //MARK: - @@IBAction
-    @IBAction func didPressedView(_ sender: UIButton) {
+    @IBAction func didPressedCancel(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
 
@@ -70,9 +71,54 @@ extension QRScannerVC: QRScannerViewDelegate {
     func qrScannerView(_ qrScannerView: QRScannerView, didFailure error: QRScannerError) {
         print(error.localizedDescription)
     }
-
+    
     func qrScannerView(_ qrScannerView: QRScannerView, didSuccess code: String) {
-          //  showAlert(code: code)
+        if let student = StudentRealmService.shared.getStudentById(opportunityID: opportunityID!, studentID: code) {
+            if code.count != 28 && student.id != code + opportunityID! {
+                let errorView = MessageView(message: "الرمز غير مصرح به او غير صحيح", animationName: "warning", animationTime: 1)
+                errorView.show(in: self.view)
+            } else {
+                if student.isAttended == false {
+                    StudentRealmService.shared.updateIsAttendedForStudentInOpportunity(studentID: student.id, opportunityID: opportunityID!, isAttended: true)
+                    let successView = MessageView(message: "تم تحضير الطالب بنجاح", animationName: "correct", animationTime: 1)
+                    successView.show(in: self.view)
+                } else {
+                    let errorView = MessageView(message: "الطالب تم تحضيره مسبقًا", animationName: "warning", animationTime: 1)
+                    errorView.show(in: self.view)
+                }
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            qrScannerView.rescan()
+        }
     }
 }
 
+extension QRScannerVC {
+    
+    func showAlert(code: String) {
+        
+        let alertController = UIAlertController(title: code, message: nil, preferredStyle: .actionSheet)
+        let copyAction = UIAlertAction(title: " خيار واحد ", style: .default) { [weak self] _ in
+            UIPasteboard.general.string = code
+            self?.qrScannerView.rescan()
+        }
+        
+        
+        alertController.addAction(copyAction)
+        let searchWebAction = UIAlertAction(title: "خيار اثنين ", style: .default) { [weak self] _ in
+            UIApplication.shared.open(URL(string: "https://www.google.com/search?q=\(code)")!, options: [:], completionHandler: nil)
+            self?.qrScannerView.rescan()
+        }
+        
+        
+        alertController.addAction(searchWebAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
+            self?.qrScannerView.rescan()
+        })
+        
+        
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}

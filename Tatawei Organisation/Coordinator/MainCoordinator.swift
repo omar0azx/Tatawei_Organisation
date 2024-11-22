@@ -188,5 +188,14 @@ final class MainCoordinator: Coordinator {
             navigationController.present(vc, animated: true, completion: nil)
         }
     }
+    
+    func viewHistoryOpportunitiesVC(opportunities: [Opportunity]) {
+        let vc = HistoryOpportunitiesVC.instantiate()
+        vc.coordinator = self
+        vc.opportunities = opportunities
+        vc.modalPresentationStyle = .fullScreen
+        navigationController.present(vc, animated: true)
+    }
+
 }
 

@@ -70,9 +70,9 @@ class StudentDataService {
                     let data = document.data()
                     
                     // Check if 'name' field exists and is a String
-                    if let name = data["name"] as? String {
+                    if let name = data["name"] as? String, let gender = data["gender"] as? Gender {
                         // Create Student object
-                        var student = Student(id: document.documentID, name: name, gender: .male)
+                        var student = Student(id: document.documentID, name: name, gender: Gender(rawValue: gender.rawValue) ?? .male)
                         student.isAttended = false
                         students.append(student)
                     }
@@ -87,44 +87,45 @@ class StudentDataService {
         }
     }
     
-//    func getStudentsForAcceptance(organisationID: String, opportunityID: String, completion: @escaping (_ error: Error?, _ students: [Student]) -> Void) {
-//        
-//        getStudentIDs(organisationID: organisationID, opportunityID: opportunityID, acceptanceStudents: false) { studentIDs in
-//            guard !studentIDs.isEmpty else {
-//                completion(("No student IDs found or all students are accepted" as! Error), []) // No error, just no students
-//                return
-//            }
-//            
-//            // Iterate through the studentIDs and fetch their information using collectionGroup
-//            let query = self.db.collectionGroup("students")
-//                .whereField("id", in: studentIDs) // Filter by studentIDs
-//            
-//            query.getDocuments { (snapshot, error) in
-//                if let error = error {
-//                    print("Error fetching students: \(error.localizedDescription)")
-//                    completion(error, [])
-//                    return
-//                }
-//                
-//                var students = [Student]() // Create an empty array to store Student objects
-//                
-//                // Iterate through the query snapshot to extract student information
-//                snapshot?.documents.forEach { document in
-//                    // Directly access the data dictionary
-//                    let data = document.data()
-//                    
-//                    // Check if 'name' field exists and is a String
-//                    if let name = data["name"] as? String {
-//                        // Create Student object
-//                        let student = Student(id: document.documentID, name: name, gender: .male)
-//                        students.append(student)
-//                    }
-//                }
-//                
-//                completion(nil, students) // Indicate success
-//            }
-//        }
-//    }
+    func getStudentsForAcceptance(organisationID: String, opportunityID: String, completion: @escaping (_ error: Error?, _ students: [Student]) -> Void) {
+        
+        getStudentIDs(organisationID: organisationID, opportunityID: opportunityID, acceptanceStudents: false) { studentIDs in
+            guard !studentIDs.isEmpty else {
+                completion(("No student IDs found or all students are accepted" as? Error), []) // No error, just no students
+                return
+            }
+            
+            // Iterate through the studentIDs and fetch their information using collectionGroup
+            let query = self.db.collectionGroup("students")
+                .whereField("id", in: studentIDs) // Filter by studentIDs
+            
+            query.getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching students: \(error.localizedDescription)")
+                    completion(error, [])
+                    return
+                }
+                
+                var students = [Student]() // Create an empty array to store Student objects
+                
+                // Iterate through the query snapshot to extract student information
+                snapshot?.documents.forEach { document in
+                    // Directly access the data dictionary
+                    let data = document.data()
+                    
+                    if let name = data["name"] as? String, let phoneNumber = data["phoneNumber"] as? String, let level = data["level"] as? String, let opportinities = data["opportunities"] as? [String: Bool], let hoursCompleted = data["hoursCompleted"] as? Int, let gender = data["gender"] as? String {
+                        // Create Student object
+
+                        
+                        let student = Student(id: document.documentID, name: name, phoneNumber: phoneNumber, level: level, opportinitiesNumber: opportinities.filter{$0.value == true}.count, hoursCompleted: hoursCompleted, gender: Gender(rawValue: gender) ?? .male)
+                        students.append(student)
+                    }
+                }
+
+                completion(nil, students) // Indicate success
+            }
+        }
+    }
     
     func updateStudentsAttended(opportunityID: String, studentIDs: [String], completion: @escaping (_ error: Error?) -> Void) {
         // Reference to the Firestore collection
@@ -159,6 +160,41 @@ class StudentDataService {
             completion(nil) // Indicate success
         }
     }
+    
+    func updateStudentsAcceptance(opportunityID: String, studentIDs: [String], completion: @escaping (_ error: Error?) -> Void) {
+        // Reference to the Firestore collection
+        let studentOpportunitiesRef = FirestoreReference(.organisations)
+            .document(Organization.currentOrganization!.id)
+            .collection("opportunities").document(opportunityID).collection("studentOpportunity")
+        
+        // Group for managing multiple async tasks
+        let dispatchGroup = DispatchGroup()
+        
+        for studentID in studentIDs {
+            // Enter the group for each Firestore operation
+            dispatchGroup.enter()
+            
+            // Reference the specific document for the student ID
+            let studentRef = studentOpportunitiesRef.document(studentID)
+            
+            // Update the `isAccepted` field to true
+            studentRef.updateData(["isAccepted": true]) { error in
+                if let error = error {
+                    print("Error updating isAccepted for \(studentID): \(error.localizedDescription)")
+                } else {
+                    print("Successfully updated isAccepted for \(studentID).")
+                }
+                // Leave the group after the operation completes
+                dispatchGroup.leave()
+            }
+        }
+        
+        // Notify when all updates are completed
+        dispatchGroup.notify(queue: .main) {
+            completion(nil) // Indicate success
+        }
+    }
+
 
     
 }

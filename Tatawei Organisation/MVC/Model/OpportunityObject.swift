@@ -22,6 +22,7 @@ class OpportunityObject: Object {
     @Persisted var latitude: Double
     @Persisted var longitude: Double
     @Persisted var studentsNumber: Int
+    @Persisted var acceptedStudents: Int
     @Persisted var organizationID: String
     @Persisted var organizationName: String
     @Persisted var isStudentsAcceptanceFinished: Bool?
@@ -50,6 +51,7 @@ extension OpportunityObject {
             latitude: latitude,
             longitude: longitude,
             studentsNumber: studentsNumber,
+            acceptedStudents: acceptedStudents,
             organizationID: organizationID,
             organizationName: organizationName,
             isStudentsAcceptanceFinished: isStudentsAcceptanceFinished

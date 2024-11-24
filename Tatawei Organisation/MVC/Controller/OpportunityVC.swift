@@ -67,6 +67,8 @@ class OpportunityVC: UIViewController, Storyboarded {
     }
     
     @IBAction func didPressedAcceptace(_ sender: UIButton) {
+        guard let opportunity = opportunity else {return}
+        coordinator?.viewStudentsAcceptanceVC(opportunityID: opportunity.id)
     }
     
     @IBAction func didPressedDeleted(_ sender: UIButton) {

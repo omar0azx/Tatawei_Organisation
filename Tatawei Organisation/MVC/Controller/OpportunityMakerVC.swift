@@ -201,8 +201,8 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
             // Check all conditions before incrementing stepNumber
             var allValid = true // Track if all validations are successful
             
-            if opportunityNameTF.text!.count < 15 {
-                let errorView = MessageView(message: "اسم الفرصة غير صحيح او غير مكتمل، يرجى إدخال الإسم بطريقة صحيحة", animationName: "warning", animationTime: 1)
+            if opportunityNameTF.text!.count < 5 {
+                let errorView = MessageView(message: "يجب ان يحتوي اسم الفرصة أكثر من 4 حروف", animationName: "warning", animationTime: 1)
                 errorView.show(in: self.view)
                 allValid = false
             } else if opportunityDescriptionTF.text!.count < 15 {
@@ -298,7 +298,7 @@ class OpportunityMakerVC: UIViewController, Storyboarded, DataSelectionDelegate 
     
     private func addNewOpportunity() {
         guard let organisation = Organization.currentOrganization else {return}
-        OpportunityDataService.shared.addNewOpportunity(organisationID: organisation.id, name: opportunityNameTF.text!, description: opportunityDescriptionTF.text!, date: opportunityDateTF.text!, time: opportunityTimeTF.text!, hour: Int(opportunityHoursTF.text!)!, city: Cities(rawValue: cityTF.text!)!, status: .open, category: InterestCategories(rawValue: opportunityCategoriesTF.text!)!, iconNumber: selectedIndex!.row, location: locationInformation.text!, latitude: latitude!, longitude: longitude!, studentsNumber: Int(studentsNumberTF.text!)!, organizationName: organisation.name) { success, error in
+        OpportunityDataService.shared.addNewOpportunity(organisationID: organisation.id, name: opportunityNameTF.text!, description: opportunityDescriptionTF.text!, date: opportunityDateTF.text!, time: opportunityTimeTF.text!, hour: Int(opportunityHoursTF.text!)!, city: Cities(rawValue: cityTF.text!)!, status: .open, category: InterestCategories(rawValue: opportunityCategoriesTF.text!)!, iconNumber: selectedIndex!.row, location: locationInformation.text!, latitude: latitude!, longitude: longitude!, studentsNumber: Int(studentsNumberTF.text!)!, acceptedStudents: 0, organizationName: organisation.name) { success, error in
             if error == nil {
                 let successView = MessageView(message: "تم إضافة الفرصة بنجاح، سيتم نقلك للصفحة الرئيسية بعد لحظات", animationName: "correct", animationTime: 1)
                 successView.show(in: self.view)

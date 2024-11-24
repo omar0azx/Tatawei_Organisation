@@ -17,6 +17,8 @@ class OpportunityManagementVC: UIViewController, Storyboarded {
     var searchedOpportunities = [Opportunity]()
     var finishedOpportunities = [Opportunity]()
     
+    private var refreshControl: UIRefreshControl!
+    
     //MARK: - IBOutleats
 
     @IBOutlet weak var tableView: UITableView!
@@ -26,6 +28,7 @@ class OpportunityManagementVC: UIViewController, Storyboarded {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupRefreshControl()
         loadOpportunities()
         self.hideKeyboardWhenTappedAround()
     }
@@ -54,6 +57,41 @@ class OpportunityManagementVC: UIViewController, Storyboarded {
         tableView.reloadData()
     }
     
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc private func refreshTableView() {
+        getAllOpportunity()
+        loadOpportunities()
+        checkOpportunityStatus()
+        refreshControl.endRefreshing()
+    }
+    
+    func getAllOpportunity() {
+        if let organisation = Organization.currentOrganization {
+            OpportunityDataService.shared.getAllOpportunities(organisationID: organisation.id) { success, error in
+                if success {
+                    print("Success to get all opportunity")
+                    self.tableView.reloadData()
+                } else {
+                    
+                }
+            }
+        }
+    }
+    
+    func checkOpportunityStatus() {
+        OpportunityDataService.shared.checkAndUpdateOpportunitiesStatus { error in
+            if error == nil {
+                print("Updated opportunity status")
+            } else {
+                print("Cat't updated opportunity status")
+            }
+        }
+    }
 }
 
 extension OpportunityManagementVC: UITableViewDelegate, UITableViewDataSource {

@@ -49,10 +49,10 @@
 		4E3261EA2CE11FCB00005B6A /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3261E92CE11FCB00005B6A /* ProfileVC.swift */; };
 		4E41D8D82CEBD1DB00900C27 /* OpportunityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E41D8D72CEBD1DB00900C27 /* OpportunityVC.swift */; };
 		4E465D532CE3ACC800A3A986 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E465D522CE3ACC800A3A986 /* SettingsCell.swift */; };
+		4E5412872CF099AC0054E646 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E5412862CF099AC0054E646 /* RealmSwift */; };
+		4E5412882CF099C10054E646 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4E5412862CF099AC0054E646 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4E9321B22CED1F02007ED383 /* OpportunityRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321B12CED1F02007ED383 /* OpportunityRealmService.swift */; };
 		4E9321B42CED2029007ED383 /* OpportunityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321B32CED2021007ED383 /* OpportunityObject.swift */; };
-		4E9321BA2CED26B8007ED383 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9321B92CED26B8007ED383 /* RealmSwift */; };
-		4E9321BB2CED26B8007ED383 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4E9321B92CED26B8007ED383 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4E9321BE2CED2B95007ED383 /* StudentRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321BD2CED2B8B007ED383 /* StudentRealmService.swift */; };
 		4E9321C02CED2C74007ED383 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321BF2CED2C6F007ED383 /* Student.swift */; };
 		4E9321C22CED3B70007ED383 /* StudentDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321C12CED3B69007ED383 /* StudentDataService.swift */; };
@@ -88,7 +88,7 @@
 		F2D22CA22CECE143003B4ECE /* StudentsAttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA12CECE143003B4ECE /* StudentsAttendanceCell.swift */; };
 		F2D22CA42CECE182003B4ECE /* IntroAttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA32CECE182003B4ECE /* IntroAttendanceVC.swift */; };
 		F2D22CA62CECE1AC003B4ECE /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA52CECE1AC003B4ECE /* QRScannerVC.swift */; };
-		F2D22CA82CECE1CC003B4ECE /* StudentsAttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA72CECE1CC003B4ECE /* StudentsAttendanceVC.swift */; };
+		F2D22CA82CECE1CC003B4ECE /* StudentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA72CECE1CC003B4ECE /* StudentsVC.swift */; };
 		F2D22CAA2CECE1EB003B4ECE /* StudentInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA92CECE1EB003B4ECE /* StudentInfoVC.swift */; };
 		F2D22CAC2CECE215003B4ECE /* QRScannerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CAB2CECE211003B4ECE /* QRScannerError.swift */; };
 		F2D22CAE2CECE22F003B4ECE /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CAD2CECE22D003B4ECE /* QRScannerView.swift */; };
@@ -101,7 +101,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4E9321BB2CED26B8007ED383 /* RealmSwift in Embed Frameworks */,
+				4E5412882CF099C10054E646 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,7 +181,7 @@
 		F2D22CA12CECE143003B4ECE /* StudentsAttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsAttendanceCell.swift; sourceTree = "<group>"; };
 		F2D22CA32CECE182003B4ECE /* IntroAttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAttendanceVC.swift; sourceTree = "<group>"; };
 		F2D22CA52CECE1AC003B4ECE /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
-		F2D22CA72CECE1CC003B4ECE /* StudentsAttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsAttendanceVC.swift; sourceTree = "<group>"; };
+		F2D22CA72CECE1CC003B4ECE /* StudentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsVC.swift; sourceTree = "<group>"; };
 		F2D22CA92CECE1EB003B4ECE /* StudentInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoVC.swift; sourceTree = "<group>"; };
 		F2D22CAB2CECE211003B4ECE /* QRScannerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerError.swift; sourceTree = "<group>"; };
 		F2D22CAD2CECE22D003B4ECE /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 				4EB20A462CE25D4B00F7937A /* FirebaseFirestore in Frameworks */,
 				4ED7FBA82CE9196000848821 /* GooglePlacesSwift in Frameworks */,
 				4EB20A442CE25D4B00F7937A /* FirebaseAuth in Frameworks */,
-				4E9321BA2CED26B8007ED383 /* RealmSwift in Frameworks */,
 				4ED7FBA32CE9184900848821 /* GoogleMaps in Frameworks */,
+				4E5412872CF099AC0054E646 /* RealmSwift in Frameworks */,
 				4EB20A482CE25D4B00F7937A /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,7 +321,7 @@
 				4EB20A6B2CE39D3E00F7937A /* AboutVC.swift */,
 				F2D22CA32CECE182003B4ECE /* IntroAttendanceVC.swift */,
 				F2D22CA52CECE1AC003B4ECE /* QRScannerVC.swift */,
-				F2D22CA72CECE1CC003B4ECE /* StudentsAttendanceVC.swift */,
+				F2D22CA72CECE1CC003B4ECE /* StudentsVC.swift */,
 				F2D22CA92CECE1EB003B4ECE /* StudentInfoVC.swift */,
 			);
 			path = Controller;
@@ -453,7 +453,7 @@
 				4ED7FBA22CE9184900848821 /* GoogleMaps */,
 				4ED7FBA52CE9196000848821 /* GooglePlaces */,
 				4ED7FBA72CE9196000848821 /* GooglePlacesSwift */,
-				4E9321B92CED26B8007ED383 /* RealmSwift */,
+				4E5412862CF099AC0054E646 /* RealmSwift */,
 			);
 			productName = "Tatawei Organisation";
 			productReference = 4E3261562CE0310900005B6A /* Tatawei Organisation.app */;
@@ -489,7 +489,7 @@
 				4EB20A402CE25D4B00F7937A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4ED7FBA12CE9184900848821 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 				4ED7FBA42CE9196000848821 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
-				4E9321AC2CED1ED7007ED383 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				4E5412852CF099AC0054E646 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4E3261572CE0310900005B6A /* Products */;
@@ -563,7 +563,7 @@
 				4E3261B72CE1181200005B6A /* CustomAlertView.swift in Sources */,
 				4E3261B92CE1181200005B6A /* StringExtensions.swift in Sources */,
 				4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */,
-				F2D22CA82CECE1CC003B4ECE /* StudentsAttendanceVC.swift in Sources */,
+				F2D22CA82CECE1CC003B4ECE /* StudentsVC.swift in Sources */,
 				4E3261BA2CE1181200005B6A /* CustomTermsView.swift in Sources */,
 				4EB20A6A2CE29E2900F7937A /* StorageService.swift in Sources */,
 				4E3261D82CE11BBC00005B6A /* IntroTataweiVC.swift in Sources */,
@@ -832,12 +832,12 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		4E9321AC2CED1ED7007ED383 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		4E5412852CF099AC0054E646 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 		4EB20A402CE25D4B00F7937A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -877,9 +877,9 @@
 			package = 4E2406BC2CE242B6009B854A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
-		4E9321B92CED26B8007ED383 /* RealmSwift */ = {
+		4E5412862CF099AC0054E646 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4E9321AC2CED1ED7007ED383 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 4E5412852CF099AC0054E646 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		4EB20A412CE25D4B00F7937A /* FirebaseAppCheck */ = {

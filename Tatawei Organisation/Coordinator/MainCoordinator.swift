@@ -178,14 +178,39 @@ final class MainCoordinator: Coordinator {
     }
     
     func viewStudentsAttendanceVC(opportunityID: String) {
-        let vc = StudentsAttendanceVC.instantiate()
+        let vc = StudentsVC.instantiate()
         vc.coordinator = self
         vc.opportunityID = opportunityID
+        vc.mode = .attendance
         vc.modalPresentationStyle = .fullScreen
         if let topViewController = navigationController.presentedViewController {
             topViewController.present(vc, animated: true, completion: nil)
         } else {
             navigationController.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func viewStudentsAcceptanceVC(opportunityID: String) {
+        let vc = StudentsVC.instantiate()
+        vc.coordinator = self
+        vc.opportunityID = opportunityID
+        vc.mode = .acceptance
+        vc.modalPresentationStyle = .fullScreen
+        if let topViewController = navigationController.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func viewStudentInfo(student: Student) {
+        let vc = StudentInfoVC.instantiate()
+        vc.coordinator = self
+        vc.student = student
+        if let topViewController = navigationController.presentedViewController?.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.presentedViewController?.present(vc, animated: true, completion: nil)
         }
     }
 }

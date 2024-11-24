@@ -29,6 +29,7 @@ struct Opportunity: Codable {
     var latitude: Double
     var longitude: Double
     var studentsNumber: Int
+    var acceptedStudents: Int
     var organizationID: String
     var organizationName: String
     var isStudentsAcceptanceFinished: Bool?
@@ -57,6 +58,7 @@ extension Opportunity {
         object.latitude = latitude
         object.longitude = longitude
         object.studentsNumber = studentsNumber
+        object.acceptedStudents = acceptedStudents
         object.organizationID = organizationID
         object.organizationName = organizationName
         object.isStudentsAcceptanceFinished = isStudentsAcceptanceFinished

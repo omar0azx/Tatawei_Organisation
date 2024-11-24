@@ -10,9 +10,14 @@ import UIKit
 class AttendanceVC: UIViewController, Storyboarded {
     
     //MARK: - Varibales
+    
     var coordinator: MainCoordinator?
     var todayOpportunities: [Opportunity] = []
     var otherOpportunities: [Opportunity] = []
+    
+    private var refreshControl: UIRefreshControl!
+    
+    //MARK: - IBOutleats
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var emtyMessage: UILabel!
@@ -21,6 +26,7 @@ class AttendanceVC: UIViewController, Storyboarded {
         super.viewDidLoad()
         
         loadOpportunities()
+        setupRefreshControl()
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -30,12 +36,23 @@ class AttendanceVC: UIViewController, Storyboarded {
     func loadOpportunities() {
         // Retrieve all saved opportunities
         let todayDate = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-        let allOpportunities = OpportunityRealmService.shared.getAllOpportunities()/*.filter{$0.status == .inProgress && $0.isStudentsAcceptanceFinished == true}*/
+        let allOpportunities = OpportunityRealmService.shared.getAllOpportunities().filter{$0.status == .inProgress && $0.isStudentsAcceptanceFinished == true}
         self.todayOpportunities = allOpportunities.filter{$0.date == todayDate}
         self.otherOpportunities = allOpportunities.filter{$0.date != todayDate}
         collectionView.reloadData()
     }
-
+    
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    @objc private func refreshTableView() {
+        loadOpportunities()
+        refreshControl.endRefreshing()
+    }
+    
 }
 
 extension AttendanceVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -83,7 +100,7 @@ extension AttendanceVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
                if indexPath.section == 0 {
                    headerView.titleLabel.text = "اليوم"
                } else {
-                   headerView.titleLabel.text = "بعدين"
+                   headerView.titleLabel.text = "الأوقات القادمة"
                }
                return headerView
            }
@@ -94,7 +111,7 @@ extension AttendanceVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         if indexPath.section == 0 {
             coordinator?.viewIntroAttendanceVC(opportunity: todayOpportunities[indexPath.row])
         } else {
-            let errorView = MessageView(message: "الوقت غير متوافق مع وقت الفرصة", animationName: "warning", animationTime: 1)
+            let errorView = MessageView(message: "التاريخ غير متوافق مع تاريخ الفرصة", animationName: "warning", animationTime: 1)
             errorView.show(in: self.view)
         }
     }

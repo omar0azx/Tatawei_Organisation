@@ -66,6 +66,7 @@ class OpportunityRealmService {
                 realmObject.latitude = updatedOpportunity.latitude
                 realmObject.longitude = updatedOpportunity.longitude
                 realmObject.studentsNumber = updatedOpportunity.studentsNumber
+                realmObject.acceptedStudents = updatedOpportunity.acceptedStudents
                 realmObject.organizationID = updatedOpportunity.organizationID
                 realmObject.organizationName = updatedOpportunity.organizationName
                 realmObject.isStudentsAcceptanceFinished = updatedOpportunity.isStudentsAcceptanceFinished ?? false
@@ -85,7 +86,42 @@ class OpportunityRealmService {
             // Begin a write transaction
             try opportunityRealm.write {
                 opportunityObject.status = status.rawValue
+                opportunityObject.isStudentsAcceptanceFinished = true
                 print("Updated student \(opportunityObject.id)'s attendance to \(status).")
+            }
+        } catch {
+            print("Error updating student's attendance: \(error.localizedDescription)")
+        }
+    }
+    
+    func updateOpportunityStudentsNumberById(_ id: String, studentsNumber: Int) {
+        do {
+            guard let opportunityObject = opportunityRealm.object(ofType: OpportunityObject.self, forPrimaryKey: id) else {
+                print("Student with ID \(id) not found.")
+                return
+            }
+            
+            // Begin a write transaction
+            try opportunityRealm.write {
+                opportunityObject.acceptedStudents = studentsNumber
+                print("Updated opportunity \(opportunityObject.id) to \(studentsNumber).")
+            }
+        } catch {
+            print("Error updating opportunity: \(error.localizedDescription)")
+        }
+    }
+    
+    func updateOpportunityTest() {
+        do {
+            guard let opportunityObject = opportunityRealm.object(ofType: OpportunityObject.self, forPrimaryKey: "lSqAorlmrTdBBSUUiLIvIlffkX43") else {
+                print("Student with ID i6R5FjkvwfFjgawUVRFj not found.")
+                return
+            }
+            
+            // Begin a write transaction
+            try opportunityRealm.write {
+                opportunityObject.status = "open"
+                opportunityObject.date = "01/12/2024"
             }
         } catch {
             print("Error updating student's attendance: \(error.localizedDescription)")

@@ -16,6 +16,10 @@ struct StudentOpportunity: Codable {
 struct Student: Codable {
     var id: String
     var name: String
+    var phoneNumber: String?
+    var level: String?
+    var opportinitiesNumber: Int?
+    var hoursCompleted: Int?
     var gender: Gender
     var isAttended: Bool?
 

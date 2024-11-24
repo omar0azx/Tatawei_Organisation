@@ -11,6 +11,7 @@ import FirebaseCore
 import FirebaseAppCheck
 import GoogleMaps
 import GooglePlaces
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,13 +27,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyADEz8PXDl2MCv4hAy8tnDtDxRX-z6PJMk")
         GMSPlacesClient.provideAPIKey("AIzaSyADEz8PXDl2MCv4hAy8tnDtDxRX-z6PJMk")
-        
+        configureRealm()
         FirebaseApp.configure()
         IQKeyboardManager.shared.isEnabled = true
         return true
     }
 
     // MARK: UISceneSession Lifecycle
+    
+    private func configureRealm() {
+            let config = Realm.Configuration(
+                schemaVersion: 2, // Increment the schema version
+                migrationBlock: { migration, oldSchemaVersion in
+                    if oldSchemaVersion < 2 {
+                        // Perform migration logic if needed
+                    }
+                }
+            )
+            Realm.Configuration.defaultConfiguration = config
+            do {
+                let realm = try Realm()
+                print("Realm initialized with schema version \(config.schemaVersion)")
+            } catch {
+                fatalError("Failed to initialize Realm: \(error)")
+            }
+        }
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.

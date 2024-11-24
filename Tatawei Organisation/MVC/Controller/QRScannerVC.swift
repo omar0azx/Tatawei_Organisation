@@ -73,20 +73,19 @@ extension QRScannerVC: QRScannerViewDelegate {
     }
     
     func qrScannerView(_ qrScannerView: QRScannerView, didSuccess code: String) {
-        if let student = StudentRealmService.shared.getStudentById(opportunityID: opportunityID!, studentID: code) {
-            if code.count != 28 && student.id != code + opportunityID! {
+        let student = StudentRealmService.shared.getStudentById(opportunityID: opportunityID!, studentID: code)
+        if code.count != 28 && student?.id != code + opportunityID! {
                 let errorView = MessageView(message: "الرمز غير مصرح به او غير صحيح", animationName: "warning", animationTime: 1)
                 errorView.show(in: self.view)
             } else {
-                if student.isAttended == false {
-                    StudentRealmService.shared.updateIsAttendedForStudentInOpportunity(studentID: student.id, opportunityID: opportunityID!, isAttended: true)
+                if student?.isAttended == false {
+                    StudentRealmService.shared.updateIsAttendedForStudentInOpportunity(studentID: student!.id, opportunityID: opportunityID!, isAttended: true)
                     let successView = MessageView(message: "تم تحضير الطالب بنجاح", animationName: "correct", animationTime: 1)
                     successView.show(in: self.view)
                 } else {
                     let errorView = MessageView(message: "الطالب تم تحضيره مسبقًا", animationName: "warning", animationTime: 1)
                     errorView.show(in: self.view)
                 }
-            }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             qrScannerView.rescan()

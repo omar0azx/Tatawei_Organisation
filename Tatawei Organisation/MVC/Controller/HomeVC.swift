@@ -20,13 +20,10 @@ class HomeVC: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAllOpportunity()
         setupUI()
         setupRefreshControl()
         tableView.showsVerticalScrollIndicator = false
-    }
-    
-    override func viewIsAppearing(_ animated: Bool) {
-        
     }
     
     @IBAction func showQRCode(_ sender: UIButton) {
@@ -51,7 +48,8 @@ class HomeVC: UIViewController, Storyboarded {
     }
     
     @objc private func refreshTableView() {
-        tableView.reloadData()
+        getAllOpportunity()
+        checkOpportunityStatus()
         refreshControl.endRefreshing()
     }
     
@@ -67,6 +65,28 @@ class HomeVC: UIViewController, Storyboarded {
         }
     }
     
+    func getAllOpportunity() {
+        if let organisation = Organization.currentOrganization {
+            OpportunityDataService.shared.getAllOpportunities(organisationID: organisation.id) { success, error in
+                if success {
+                    print("Success to get all opportunity")
+                    self.tableView.reloadData()
+                } else {
+                    
+                }
+            }
+        }
+    }
+    
+    func checkOpportunityStatus() {
+        OpportunityDataService.shared.checkAndUpdateOpportunitiesStatus { error in
+            if error == nil {
+                print("Updated opportunity status")
+            } else {
+                print("Cat't updated opportunity status")
+            }
+        }
+    }
 
 }
 

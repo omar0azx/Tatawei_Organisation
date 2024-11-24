@@ -27,7 +27,7 @@ final class MainCoordinator: Coordinator {
     func autoLogin() {
         
         if AuthService.shared.checkCurrentUserStatus() ||
-        userDefaults.object(forKey: kCURRENTUSER) != nil {
+            userDefaults.object(forKey: kCURRENTUSER) != nil {
             viewNavigationVC()
         } else {
             viewLoginVC()
@@ -64,7 +64,7 @@ final class MainCoordinator: Coordinator {
     
     func viewNavigationVC() {
         let navigationVC = NavigationVC.instantiate()
-
+        
         let homeVC = HomeVC.instantiate()
         let opportunityManagementVC = OpportunityManagementVC.instantiate()
         let attendanceVC = AttendanceVC.instantiate()
@@ -213,5 +213,19 @@ final class MainCoordinator: Coordinator {
             navigationController.presentedViewController?.present(vc, animated: true, completion: nil)
         }
     }
-}
 
+    func viewHistoryOpportunitiesVC(opportunities: [Opportunity]) {
+        let vc = HistoryOpportunitiesVC.instantiate()
+        vc.coordinator = self
+        vc.opportunities = opportunities
+        vc.modalPresentationStyle = .fullScreen
+        navigationController.present(vc, animated: true)
+    }
+    
+    func viewStudentSkillsVC() {
+        let vc = StudentSkillsVC.instantiate()
+        vc.coordinator = self
+        navigationController.present(vc, animated: true)
+    }
+
+}

@@ -80,6 +80,7 @@
 		4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */; };
 		4EE4FFAA2CE78A550037B293 /* InvitationCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */; };
 		4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6D3E62CE96B9A0063587C /* HomeCell.swift */; };
+		F26737DD2CF103A100E55901 /* StudentSkillsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26737DC2CF103A100E55901 /* StudentSkillsVC.swift */; };
 		F2A8918B2CF001CA0013246C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F2A8918A2CF001CA0013246C /* FirebaseAuth */; };
 		F2BFC8372CF09299000CC93C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F2BFC8362CF09299000CC93C /* RealmSwift */; };
 		F2BFC8382CF0930E000CC93C /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = F2BFC8362CF09299000CC93C /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -179,6 +180,7 @@
 		4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityDataService.swift; sourceTree = "<group>"; };
 		4EE4FFA92CE78A550037B293 /* InvitationCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeVC.swift; sourceTree = "<group>"; };
 		4EE6D3E62CE96B9A0063587C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		F26737DC2CF103A100E55901 /* StudentSkillsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSkillsVC.swift; sourceTree = "<group>"; };
 		F2D22C9D2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityAttendanceCell.swift; sourceTree = "<group>"; };
 		F2D22C9F2CECE112003B4ECE /* OpportunityHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityHeaderView.swift; sourceTree = "<group>"; };
 		F2D22CA12CECE143003B4ECE /* StudentsAttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsAttendanceCell.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				F2D22CA72CECE1CC003B4ECE /* StudentsAttendanceVC.swift */,
 				F2D22CA92CECE1EB003B4ECE /* StudentInfoVC.swift */,
 				F2D22CB32CEFBCAD003B4ECE /* HistoryOpportunitiesVC.swift */,
+				F26737DC2CF103A100E55901 /* StudentSkillsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				F2D22CA02CECE112003B4ECE /* OpportunityHeaderView.swift in Sources */,
 				4E3261DC2CE11D0C00005B6A /* OrganisationAccountVC.swift in Sources */,
 				4E3261E62CE11F9B00005B6A /* OpportunityManagementVC.swift in Sources */,
+				F26737DD2CF103A100E55901 /* StudentSkillsVC.swift in Sources */,
 				4E9321C02CED2C74007ED383 /* Student.swift in Sources */,
 				4ED7FBAA2CE932C000848821 /* OpportunityDataService.swift in Sources */,
 				4E3261D52CE1193200005B6A /* NavigationVC.swift in Sources */,

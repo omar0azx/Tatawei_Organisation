@@ -644,7 +644,7 @@
 				DEVELOPMENT_TEAM = 95R6F629SF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tatawei Organisation/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "تطوعي منظمة";
+				INFOPLIST_KEY_CFBundleDisplayName = "تطوعي للمنظمة";
 				INFOPLIST_KEY_NSCameraUsageDescription = "السماح بإستخدام الكاميرا لقراءة رمز الطلاب";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";
@@ -676,7 +676,7 @@
 				DEVELOPMENT_TEAM = 95R6F629SF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tatawei Organisation/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "تطوعي منظمة";
+				INFOPLIST_KEY_CFBundleDisplayName = "تطوعي للمنظمة";
 				INFOPLIST_KEY_NSCameraUsageDescription = "السماح بإستخدام الكاميرا لقراءة رمز الطلاب";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";

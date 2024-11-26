@@ -8,14 +8,6 @@
 import Foundation
 import UIKit
 
-enum HoursBadges: String, Codable {
-    case hero = "البطل"
-    case legend = "الأسطورة"
-    case terrible = "الرهيب"
-    case experienced = "المحنك"
-    case opportunityKiller = "مختم التطوع"
-}
-
 enum SkillsBadges: String, Codable {
     case communication = "المتواصل"
     case teamwork = "المتعاون"
@@ -26,9 +18,3 @@ enum SkillsBadges: String, Codable {
     case resilience = "الصامد"
     case problemSolving = "حلال المشاكل"
 }
-
-struct Badge {
-    let name: String
-    let image: UIImage
-}
-

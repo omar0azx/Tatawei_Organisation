@@ -171,5 +171,20 @@ class StudentRealmService {
             print("Error deleting students for opportunity: \(error.localizedDescription)")
         }
     }
+    
+    func deleteAllStudents() {
+        do {
+            try studentRealm.write {
+                // Fetch all StudentObject entries
+                let allStudents = studentRealm.objects(StudentObject.self)
+                
+                // Delete all students
+                studentRealm.delete(allStudents)
+                print("Deleted all students from the database.")
+            }
+        } catch {
+            print("Error deleting all students: \(error.localizedDescription)")
+        }
+    }
 
 }

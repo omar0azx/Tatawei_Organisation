@@ -46,6 +46,10 @@ class OpportunityManagementVC: UIViewController, Storyboarded {
         }
     }
     
+    @IBAction func historyBtn(_ sender: UIButton) {
+        coordinator?.viewHistoryOpportunitiesVC(opportunities: finishedOpportunities)
+    }
+    
     
     //MARK: - Functions
     

@@ -36,23 +36,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: UISceneSession Lifecycle
     
     private func configureRealm() {
-            let config = Realm.Configuration(
-                schemaVersion: 2, // Increment the schema version
-                migrationBlock: { migration, oldSchemaVersion in
-                    if oldSchemaVersion < 2 {
-                        // Perform migration logic if needed
-                    }
+        let config = Realm.Configuration(
+            schemaVersion: 3, // Increment the schema version
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 2 {
+                    // Perform migration logic if needed
                 }
-            )
-            Realm.Configuration.defaultConfiguration = config
-            do {
-                let realm = try Realm()
-                print("Realm initialized with schema version \(config.schemaVersion)")
-            } catch {
-                fatalError("Failed to initialize Realm: \(error)")
             }
+        )
+        Realm.Configuration.defaultConfiguration = config
+        do {
+            _ = try Realm()
+            print("Realm initialized with schema version \(config.schemaVersion)")
+        } catch {
+            fatalError("Failed to initialize Realm: \(error)")
         }
-
+    }
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.

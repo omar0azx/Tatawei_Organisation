@@ -17,6 +17,7 @@ struct Organization: Codable {
     var numberOfReviewers: Int
     var volunteersNumber: Int
     var opportunitiesNumber: Int
+    var completedOpportunitesHours: Int
 
     static var currentOrganization: Organization? {
         

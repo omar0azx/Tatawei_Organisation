@@ -51,6 +51,7 @@
 		4E465D532CE3ACC800A3A986 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E465D522CE3ACC800A3A986 /* SettingsCell.swift */; };
 		4E5412872CF099AC0054E646 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E5412862CF099AC0054E646 /* RealmSwift */; };
 		4E5412882CF099C10054E646 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4E5412862CF099AC0054E646 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		4E54128A2CF3EDBE0054E646 /* OrganisationDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5412892CF3EDB50054E646 /* OrganisationDataService.swift */; };
 		4E9321B22CED1F02007ED383 /* OpportunityRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321B12CED1F02007ED383 /* OpportunityRealmService.swift */; };
 		4E9321B42CED2029007ED383 /* OpportunityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321B32CED2021007ED383 /* OpportunityObject.swift */; };
 		4E9321BE2CED2B95007ED383 /* StudentRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9321BD2CED2B8B007ED383 /* StudentRealmService.swift */; };
@@ -84,8 +85,6 @@
 		4EE6D3E72CE96B9A0063587C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6D3E62CE96B9A0063587C /* HomeCell.swift */; };
 		F26737DD2CF103A100E55901 /* StudentSkillsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26737DC2CF103A100E55901 /* StudentSkillsVC.swift */; };
 		F2A8918B2CF001CA0013246C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F2A8918A2CF001CA0013246C /* FirebaseAuth */; };
-		F2BFC8372CF09299000CC93C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F2BFC8362CF09299000CC93C /* RealmSwift */; };
-		F2BFC8382CF0930E000CC93C /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = F2BFC8362CF09299000CC93C /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		F2D22C9E2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22C9D2CECE0EF003B4ECE /* OpportunityAttendanceCell.swift */; };
 		F2D22CA02CECE112003B4ECE /* OpportunityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22C9F2CECE112003B4ECE /* OpportunityHeaderView.swift */; };
 		F2D22CA22CECE143003B4ECE /* StudentsAttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D22CA12CECE143003B4ECE /* StudentsAttendanceCell.swift */; };
@@ -157,6 +156,7 @@
 		4E3261E92CE11FCB00005B6A /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		4E41D8D72CEBD1DB00900C27 /* OpportunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityVC.swift; sourceTree = "<group>"; };
 		4E465D522CE3ACC800A3A986 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		4E5412892CF3EDB50054E646 /* OrganisationDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationDataService.swift; sourceTree = "<group>"; };
 		4E9321B12CED1F02007ED383 /* OpportunityRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityRealmService.swift; sourceTree = "<group>"; };
 		4E9321B32CED2021007ED383 /* OpportunityObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityObject.swift; sourceTree = "<group>"; };
 		4E9321BD2CED2B8B007ED383 /* StudentRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRealmService.swift; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 				F2A8918B2CF001CA0013246C /* FirebaseAuth in Frameworks */,
 				4EB20A462CE25D4B00F7937A /* FirebaseFirestore in Frameworks */,
 				4ED7FBA82CE9196000848821 /* GooglePlacesSwift in Frameworks */,
-				4EB20A442CE25D4B00F7937A /* FirebaseAuth in Frameworks */,
 				4ED7FBA32CE9184900848821 /* GoogleMaps in Frameworks */,
 				4E5412872CF099AC0054E646 /* RealmSwift in Frameworks */,
 				4EB20A482CE25D4B00F7937A /* FirebaseStorage in Frameworks */,
@@ -403,6 +402,7 @@
 				4E3261C92CE1182600005B6A /* AuthService.swift */,
 				4EB20A5F2CE277F400F7937A /* OfficialDataService.swift */,
 				4ED7FBA92CE932BC00848821 /* OpportunityDataService.swift */,
+				4E5412892CF3EDB50054E646 /* OrganisationDataService.swift */,
 				4E9321C12CED3B69007ED383 /* StudentDataService.swift */,
 				4EB20A692CE29E2900F7937A /* StorageService.swift */,
 				4E9321BC2CED2B01007ED383 /* Realm */,
@@ -587,6 +587,7 @@
 				F2D22CB02CEFBB1F003B4ECE /* DashedView.swift in Sources */,
 				4E09494A2CEBACAA008DA911 /* OpportunityCell.swift in Sources */,
 				4E3261E42CE11F6B00005B6A /* HomeVC.swift in Sources */,
+				4E54128A2CF3EDBE0054E646 /* OrganisationDataService.swift in Sources */,
 				F2D22CA02CECE112003B4ECE /* OpportunityHeaderView.swift in Sources */,
 				4E3261DC2CE11D0C00005B6A /* OrganisationAccountVC.swift in Sources */,
 				4E3261E62CE11F9B00005B6A /* OpportunityManagementVC.swift in Sources */,
@@ -643,11 +644,14 @@
 				DEVELOPMENT_TEAM = 95R6F629SF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tatawei Organisation/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "تطوعي منظمة";
+				INFOPLIST_KEY_NSCameraUsageDescription = "السماح بإستخدام الكاميرا لقراءة رمز الطلاب";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -672,11 +676,14 @@
 				DEVELOPMENT_TEAM = 95R6F629SF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tatawei Organisation/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "تطوعي منظمة";
+				INFOPLIST_KEY_NSCameraUsageDescription = "السماح بإستخدام الكاميرا لقراءة رمز الطلاب";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "السماح بإستخدام الموقع لتحديد الفرصة";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -882,14 +889,6 @@
 				minimumVersion = 9.2.0;
 			};
 		};
-		F2BFC8332CF09299000CC93C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -942,11 +941,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4EB20A402CE25D4B00F7937A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		F2BFC8362CF09299000CC93C /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F2BFC8332CF09299000CC93C /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

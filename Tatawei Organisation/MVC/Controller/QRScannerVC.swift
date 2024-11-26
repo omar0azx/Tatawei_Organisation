@@ -10,7 +10,16 @@ import AVFoundation
 
 class QRScannerVC: UIViewController, Storyboarded {
     
+    enum Mode {
+        case attendance
+        case rating
+    }
+    
+    
     //MARK: - Varibales
+    
+    var mode: Mode = .attendance
+    
     var coordinator: MainCoordinator?
     var opportunityID: String?
 
@@ -73,8 +82,10 @@ extension QRScannerVC: QRScannerViewDelegate {
     }
     
     func qrScannerView(_ qrScannerView: QRScannerView, didSuccess code: String) {
-        let student = StudentRealmService.shared.getStudentById(opportunityID: opportunityID!, studentID: code)
-        if code.count != 28 && student?.id != code + opportunityID! {
+        
+        if mode == .attendance {
+            let student = StudentRealmService.shared.getStudentById(opportunityID: opportunityID!, studentID: code)
+            if code.count != 28 && student?.id != code + opportunityID! {
                 let errorView = MessageView(message: "الرمز غير مصرح به او غير صحيح", animationName: "warning", animationTime: 1)
                 errorView.show(in: self.view)
             } else {
@@ -86,7 +97,16 @@ extension QRScannerVC: QRScannerViewDelegate {
                     let errorView = MessageView(message: "الطالب تم تحضيره مسبقًا", animationName: "warning", animationTime: 1)
                     errorView.show(in: self.view)
                 }
+            }
+        } else {
+            if code.count != 28 {
+                let errorView = MessageView(message: "الرمز غير مصرح به او غير صحيح", animationName: "warning", animationTime: 1)
+                errorView.show(in: self.view)
+            } else {
+                coordinator?.viewStudentSkillsVC(studentID: code)
+            }
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             qrScannerView.rescan()
         }

@@ -53,8 +53,8 @@ class IntroAttendanceVC: UIViewController, Storyboarded {
     }
     
     func getOpportunityStudents() {
-        if let opportunity = opportunity, let organisation = Organization.currentOrganization {
-            StudentDataService.shared.getStudentsForAttendance(organisationID: organisation.id, opportunityID: opportunity.id) { error in
+        if let opportunityID = opportunity?.id, let organisation = Organization.currentOrganization {
+            StudentDataService.shared.getStudentsForAttendance(organisationID: organisation.id, opportunityID: opportunityID) { error in
                 if error != nil {
                     print("The students is empty")
                 } else {

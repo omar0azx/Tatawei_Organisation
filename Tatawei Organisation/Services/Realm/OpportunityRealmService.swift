@@ -128,6 +128,14 @@ class OpportunityRealmService {
         }
     }
     
+    func getAllOpportunities() -> [Opportunity] {
+        // Fetch all OpportunityObject entries from Realm
+        let realmObjects = opportunityRealm.objects(OpportunityObject.self)
+        
+        // Map Realm objects to Opportunity structs
+        return realmObjects.compactMap { $0.toStruct() }
+    }
+    
     // Delete opportunity by ID
     func deleteOpportunityById(_ id: String) {
         guard let realmObject = opportunityRealm.object(ofType: OpportunityObject.self, forPrimaryKey: id) else {
@@ -142,12 +150,21 @@ class OpportunityRealmService {
         }
     }
     
-    func getAllOpportunities() -> [Opportunity] {
-        // Fetch all OpportunityObject entries from Realm
-        let realmObjects = opportunityRealm.objects(OpportunityObject.self)
-        
-        // Map Realm objects to Opportunity structs
-        return realmObjects.compactMap { $0.toStruct() }
+    // Delete all opportunities
+    func deleteAllOpportunities() {
+        do {
+            try opportunityRealm.write {
+                // Fetch all OpportunityObject entries
+                let allOpportunities = opportunityRealm.objects(OpportunityObject.self)
+                
+                // Delete all opportunities
+                opportunityRealm.delete(allOpportunities)
+                print("Deleted all opportunities from the database.")
+            }
+        } catch {
+            print("Error deleting all opportunities: \(error.localizedDescription)")
+        }
     }
-
+    
+    
 }

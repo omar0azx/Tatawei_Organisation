@@ -639,43 +639,10 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nJj-9b-Guf">
                                                                         <rect key="frame" x="10" y="10" width="243" height="79"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBF-NL-olK">
-                                                                                <rect key="frame" x="0.0" y="31" width="188" height="17"/>
-                                                                                <attributedString key="attributedText">
-                                                                                    <fragment content="إنشاء">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <font key="NSOriginalFont" metaFont="system" size="17"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content=" ">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content="منظمة">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <font key="NSOriginalFont" metaFont="system" size="17"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content=" ">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content="جديدة">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <font key="NSOriginalFont" metaFont="system" size="17"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                </attributedString>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="إنشاء منظمة جديدة" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBF-NL-olK">
+                                                                                <rect key="frame" x="0.0" y="26.333333333333371" width="188" height="26.333333333333329"/>
+                                                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="14"/>
+                                                                                <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ktd-t7-6qC">
@@ -763,56 +730,10 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kFH-BO-3QY">
                                                                         <rect key="frame" x="10" y="10" width="243" height="79"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHv-ZI-dwi">
-                                                                                <rect key="frame" x="0.0" y="31" width="188" height="17"/>
-                                                                                <attributedString key="attributedText">
-                                                                                    <fragment content="إنضمام">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <font key="NSOriginalFont" metaFont="system" size="17"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content=" ">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content="الى">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <font key="NSOriginalFont" metaFont="system" size="17"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content=" ">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content="منظمة">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <font key="NSOriginalFont" metaFont="system" size="17"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content=" ">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                    <fragment content="حاليه">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" metaFont="system" size="14"/>
-                                                                                            <font key="NSOriginalFont" metaFont="system" size="17"/>
-                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                </attributedString>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="إنضمام الى منظمة حاليه" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHv-ZI-dwi">
+                                                                                <rect key="frame" x="0.0" y="26.333333333333371" width="188" height="26.333333333333329"/>
+                                                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="14"/>
+                                                                                <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mIi-FY-HOp">

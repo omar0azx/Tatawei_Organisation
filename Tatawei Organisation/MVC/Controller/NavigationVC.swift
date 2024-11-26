@@ -152,7 +152,7 @@ class NavigationVC: ContainerVC, Storyboarded {
     
     func updateOrganisationData() {
         if let organisationID = Organization.currentOrganization?.id {
-            OfficialDataService.shared.getOrganisationData(organisationID: organisationID) { status, error in
+            OrganisationDataService.shared.getOrganisationData(organisationID: organisationID) { status, error in
                 if status! {
                     print("Success to update locally storage")
                 } else {

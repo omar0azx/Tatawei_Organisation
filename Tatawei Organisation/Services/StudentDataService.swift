@@ -19,35 +19,59 @@ class StudentDataService {
             .document(organisationID)
             .collection("opportunities")
             .document(opportunityID)
-            .collection("studentOpportunity").whereField("isAccepted", isEqualTo: acceptanceStudents)
-        
+            .collection("studentOpportunity")
+            .whereField("isAccepted", isEqualTo: acceptanceStudents) // Use the acceptanceStudents parameter directly
+
         studentOpportunityRef.getDocuments { (snapshot, error) in
             guard let documents = snapshot?.documents else {
                 print("Error retrieving student opportunity data: \(error?.localizedDescription ?? "Unknown error")")
                 completion([])
                 return
             }
-            
+
             var studentIDs = [String]()
-            
+
             for document in documents {
-                let data = document.data()
-                
-                // Assuming each document has fields 'studentID' and 'isAccepted'
-                if let isAccepted = data["isAccepted"] as? Bool, !isAccepted {
-                    studentIDs.append(document.documentID) // Use document ID as student ID
-                }
+                // Collect the document ID as the student ID
+                studentIDs.append(document.documentID)
             }
             completion(studentIDs)
         }
     }
+
+    func getStudentByID(studentID: String, completion: @escaping (Student?, Error?) -> Void) {
+        
+        // Query for a student by ID across all "students" collections
+        db.collectionGroup("students").whereField("id", isEqualTo: studentID).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(nil, error)
+            } else if let document = snapshot?.documents.first {
+                let studentData = document.data()
+                
+                // Convert Firestore data to JSON Data
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: studentData, options: [])
+                    
+                    // Decode JSON data to Student object
+                    let decoder = JSONDecoder()
+                    let student = try decoder.decode(Student.self, from: jsonData)
+                    completion(student, nil)
+                } catch {
+                    completion(nil, error)
+                }
+            } else {
+                completion(nil, nil)  // Student not found
+            }
+        }
+    }
+
+
     
     func getStudentsForAttendance(organisationID: String, opportunityID: String, completion: @escaping (_ error: Error?) -> Void) {
 
-        getStudentIDs(organisationID: organisationID, opportunityID: opportunityID, acceptanceStudents: false) { studentIDs in
+        getStudentIDs(organisationID: organisationID, opportunityID: opportunityID, acceptanceStudents: true) { studentIDs in
             guard !studentIDs.isEmpty else {
-                print("No student IDs found or all students are accepted.")
-                completion(nil) // No error, just no students
+                completion(("No student IDs found or all students are accepted" as? Error)) // No error, just no students
                 return
             }
             
@@ -70,10 +94,11 @@ class StudentDataService {
                     let data = document.data()
                     
                     // Check if 'name' field exists and is a String
-                    if let name = data["name"] as? String, let gender = data["gender"] as? Gender {
+                    if let name = data["name"] as? String, let gender = data["gender"] as? String, let level = data["level"] as? String {
                         // Create Student object
-                        var student = Student(id: document.documentID, name: name, gender: Gender(rawValue: gender.rawValue) ?? .male)
+                        var student = Student(id: document.documentID, name: name, level: level, gender: Gender(rawValue: gender) ?? .male)
                         student.isAttended = false
+                        print("student ->>> \(student)")
                         students.append(student)
                     }
                 }
@@ -146,9 +171,9 @@ class StudentDataService {
             // Update the `isAccepted` field to true
             studentRef.updateData(["isAttended": true]) { error in
                 if let error = error {
-                    print("Error updating isAccepted for \(studentID): \(error.localizedDescription)")
+                    print("Error updating isAttended for \(studentID): \(error.localizedDescription)")
                 } else {
-                    print("Successfully updated isAccepted for \(studentID).")
+                    print("Successfully updated isAttended for \(studentID).")
                 }
                 // Leave the group after the operation completes
                 dispatchGroup.leave()
@@ -194,7 +219,46 @@ class StudentDataService {
             completion(nil) // Indicate success
         }
     }
-
-
+    
+    
+    func incrementBadges(studentID: String, selectedBadges: [SkillsBadges], completion: @escaping (Bool, Error?) -> Void) {
+        
+        // Ensure that the selected badges array contains no more than 3 badges
+        guard selectedBadges.count <= 3 else {
+            completion(false, NSError(domain: "Badges Error", code: 400, userInfo: [NSLocalizedDescriptionKey: "You can only select a maximum of 3 badges."]))
+            return
+        }
+        
+        // Fetch the student's document
+        db.collectionGroup("students").whereField("id", isEqualTo: studentID).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(false, error)
+            } else if let document = snapshot?.documents.first {
+                var studentData = document.data()
+                
+                // Retrieve existing badge data (if any)
+                var badges = studentData["badges"] as? [String: Int] ?? [:]
+                
+                // Increment the badge counts
+                for badge in selectedBadges {
+                    let badgeKey = badge.rawValue
+                    let currentCount = badges[badgeKey] ?? 0
+                    badges[badgeKey] = currentCount + 1
+                }
+                
+                // Update the Firestore document with the new badge counts
+                studentData["badges"] = badges
+                document.reference.updateData(studentData) { error in
+                    if let error = error {
+                        completion(false, error)
+                    } else {
+                        completion(true, nil)
+                    }
+                }
+            } else {
+                completion(false, NSError(domain: "Firestore Error", code: 404, userInfo: [NSLocalizedDescriptionKey: "Student not found."]))
+            }
+        }
+    }
     
 }

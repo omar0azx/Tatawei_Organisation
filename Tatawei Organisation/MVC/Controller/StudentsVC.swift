@@ -109,7 +109,9 @@ class StudentsVC: UIViewController, Storyboarded, StudentsAttendanceDelegate {
                 print(allStudents)
                 self.opportunityStudents = allStudents
                 filteredStudents = opportunityStudents
-                tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             } else {
                 let loadView = MessageView(message: "يرجى الإنتظار", animationName: "loading", animationTime: 1)
                 loadView.show(in: self.view)

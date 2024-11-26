@@ -25,7 +25,7 @@ class OpportunityObject: Object {
     @Persisted var acceptedStudents: Int
     @Persisted var organizationID: String
     @Persisted var organizationName: String
-    @Persisted var isStudentsAcceptanceFinished: Bool?
+    @Persisted var isStudentsAcceptanceFinished: Bool
 }
 
 extension OpportunityObject {

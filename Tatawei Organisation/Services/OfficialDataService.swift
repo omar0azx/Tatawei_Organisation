@@ -70,7 +70,7 @@ class OfficialDataService {
                 if let error = error {
                     print("Error adding organisation official: \(error.localizedDescription)")
                 } else {
-                    self.getOrganisationData(organisationID: organisationID) { status, error in
+                    OrganisationDataService.shared.getOrganisationData(organisationID: organisationID) { status, error in
                         if error != nil {
                             print("Organisation and official added successfully!")
                         }
@@ -79,40 +79,6 @@ class OfficialDataService {
             }
         } catch {
             print("Failed to set data for official: \(error.localizedDescription)")
-        }
-    }
-    
-    func getOrganisationData(organisationID: String, completion: @escaping (_ status: Bool?, _ error: Error?) -> Void) {
-        // Reference to the Firestore collection where organisation are stored
-        let organisationRef = FirestoreReference(.organisations).document(organisationID)
-        
-        organisationRef.getDocument { (document, error) in
-            if let error = error {
-                completion(false, error)
-                return
-            }
-            
-            guard let document = document, document.exists else {
-                completion(false, nil) // No document found
-                return
-            }
-            
-            // Try to decode the document data into a Student struct
-            do {
-                
-                let organisation = try document.data(as: Organization.self)
-                
-                saveOrganizationLocally(organisation)
-                print("organisation found and saved locally: organisation")
-                
-                completion(true, nil)
-                
-            } catch {
-                
-                print("Error decoding organisation data: \(error.localizedDescription)")
-                
-                completion(false, error)
-            }
         }
     }
         
@@ -147,8 +113,13 @@ class OfficialDataService {
                     // Decode the JSON data into an OrganisationOfficial object
                     let decoder = JSONDecoder()
                     let organisationOfficial = try decoder.decode(Official.self, from: jsonData)
-                    
-                    completion(true, organisationOfficial)
+                    OrganisationDataService.shared.getOrganisationData(organisationID: organisationOfficial.organizationID) { status, error in
+                        if status! {
+                            completion(true, organisationOfficial)
+                        } else {
+                            completion(false, nil)
+                        }
+                    }
                 } catch {
                     print("Error decoding official data: \(error.localizedDescription)")
                     completion(false, nil)
@@ -177,7 +148,6 @@ class OfficialDataService {
                                         print("Error updating official data: \(error.localizedDescription)")
                                         completion(error)
                                     } else {
-                                        
                                         saveUserLocally(updatedOfficial)
                                         print("Official data successfully updated.")
                                         completion(nil)
@@ -224,7 +194,6 @@ class OfficialDataService {
                                         print("Error updating Organization data: \(error.localizedDescription)")
                                         completion(error)
                                     } else {
-                                        
                                         saveOrganizationLocally(updatedOrganization)
                                         print("Organization data successfully updated.")
                                         completion(nil)

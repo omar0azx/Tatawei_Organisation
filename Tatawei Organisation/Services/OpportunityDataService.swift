@@ -51,20 +51,20 @@ class OpportunityDataService {
         let opportunityRef = FirestoreReference(.organisations).document(organisationID).collection("opportunities").document()
         let generatedID = opportunityRef.documentID // Get the unique document ID
 
-        let newOpportunity = Opportunity(id: generatedID, name: name, description: description, date: date, time: time, hour: hour, city: city, status: status, category: category, iconNumber: iconNumber, location: location, latitude: latitude, longitude: longitude, studentsNumber: studentsNumber, acceptedStudents: acceptedStudents, organizationID: organisationID, organizationName: organizationName)
+        let newOpportunity = Opportunity(id: generatedID, name: name, description: description, date: date, time: time, hour: hour, city: city, status: status, category: category, iconNumber: iconNumber, location: location, latitude: latitude, longitude: longitude, studentsNumber: studentsNumber, acceptedStudents: acceptedStudents, organizationID: organisationID, organizationName: organizationName, isStudentsAcceptanceFinished: false)
         
         do {
             try opportunityRef.setData(from: newOpportunity) { error in
                 if let error = error {
                     print("Error adding opportunity: \(error.localizedDescription)")
                     completion(false, error)
-                    return
+                } else {
+                    print("Opportunity added successfully!")
+                    var myOpportunity = newOpportunity
+                    myOpportunity.isStudentsAcceptanceFinished = false
+                    OpportunityRealmService.shared.saveNewOpportunity(myOpportunity)
+                    completion(true, nil)
                 }
-                print("Opportunity added successfully!")
-                var myOpportunity = newOpportunity
-                myOpportunity.isStudentsAcceptanceFinished = false
-                OpportunityRealmService.shared.saveNewOpportunity(myOpportunity)
-                completion(true, nil)
             }
         } catch {
             print("Failed to set data for opportunity: \(error.localizedDescription)")
@@ -131,8 +131,13 @@ class OpportunityDataService {
             // Parse the combined date and time
             if let opportunityDateTime = dateTimeFormatter.date(from: dateTimeString) {
                 // Compare the opportunity's date and time with the current date and time
-                if opportunityDateTime < now {
+                if opportunityDateTime < now && opportunity.status != .finished {
                     self.updateOpportunityStatus(opportunityID: opportunity.id, status: .finished)
+                    OrganisationDataService.shared.addNumbersForOrganisation(opportunitiesNumberToAdd: 1, opportunitiesHoursToAdd: opportunity.hour, volunteersNumberToAdd: opportunity.acceptedStudents) { success, error in
+                        if success {
+                            print("Success updated organistion information")
+                        }
+                    }
                 }
             } else {
                 print("Invalid date/time format for opportunity \(opportunity.id): \(dateTimeString)")
@@ -145,7 +150,7 @@ class OpportunityDataService {
 
 
     func updateOpportunityStatus(opportunityID: String, status: OpportunityStatus) {
-        let opportunityRef = FirestoreReference(.organisations).document(Organization.currentOrganization!.id).collection("opportunities").document(opportunityID)
+        let opportunityRef = FirestoreReference(.organisations).document(Organization.currentOrganization?.id ?? "123").collection("opportunities").document(opportunityID)
         
         opportunityRef.updateData([
             "status": status.rawValue
@@ -176,6 +181,7 @@ class OpportunityDataService {
                 let acceptedStudents = document.get("acceptedStudents") as? Int ?? 0
                 
                 opportunityRef.updateData([
+                    "isStudentsAcceptanceFinished" : true,
                     "acceptedStudents": acceptedStudents + studentsNumbser
                 ]) { error in
                     if let error = error {

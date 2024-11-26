@@ -26,7 +26,7 @@ class AuthService {
                 let organisationDoc = FirestoreReference(.organisations).document()
                 let organisationID = organisationDoc.documentID
                 
-                let organisation = Organization(id: organisationID, name: organisationName, description: organisationDescription, rate: 0, numberOfReviewers: 0, volunteersNumber: 0, opportunitiesNumber: 0)
+                let organisation = Organization(id: organisationID, name: organisationName, description: organisationDescription, rate: 0, numberOfReviewers: 0, volunteersNumber: 0, opportunitiesNumber: 0, completedOpportunitesHours: 0)
                 
                 let official = Official(id: user.uid, name: name, phoneNumber: phoneNumber, email: email, gender: gender,organizationID: organisationID, role: 0)
                 
@@ -111,16 +111,17 @@ class AuthService {
             }
         }
     }
-
     
     
     //MARK:- Logout
-    
     func logoutCurrentUser(completion: @escaping (_ error: Error?)-> Void) {
         
         do {
             try Auth.auth().signOut()
             userDefaults.removeObject(forKey: kCURRENTUSER)
+            userDefaults.removeObject(forKey: kCURRENTORGANISATION)
+            StudentRealmService.shared.deleteAllStudents()
+            OpportunityRealmService.shared.deleteAllOpportunities()
             userDefaults.synchronize()
             completion(nil)
         } catch let error as NSError {
@@ -149,6 +150,9 @@ class AuthService {
             } else {
                 // Remove user info from UserDefaults if delete successful
                 userDefaults.removeObject(forKey: kCURRENTUSER)
+                userDefaults.removeObject(forKey: kCURRENTORGANISATION)
+                StudentRealmService.shared.deleteAllStudents()
+                OpportunityRealmService.shared.deleteAllOpportunities()
                 userDefaults.synchronize()
                 completion(nil)
             }

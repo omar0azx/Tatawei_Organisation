@@ -81,7 +81,7 @@ class OrganisationAccountVC: UIViewController, Storyboarded, UploadLogo {
                 nameTF.text = official.name
                 genderTF.text = official.gender.rawValue
                 phoneNumberTF.text = official.phoneNumber
-                emailTF.text = "لا يمكنك تغيير البريد الالكتروني، راجع مشرفك"
+                emailTF.text = "لا يمكنك تغيير البريد الالكتروني من هنا"
                 emailTF.isEnabled = false
                 passwordStackView.isHidden = true
                 organisationNameTF.text = organisation.name
@@ -406,13 +406,13 @@ class OrganisationAccountVC: UIViewController, Storyboarded, UploadLogo {
         }
         
         if updatedOragnisationName != currentOrganisation.name {
-                updatedOrganisation.name = updatedOragnisationName
-                hasOrganisationChanges = true
-            }
-            
+            updatedOrganisation.name = updatedOragnisationName
+            hasOrganisationChanges = true
+        }
+        
         if updatedOragnisationAbout != currentOrganisation.description {
-                updatedOrganisation.description = updatedOragnisationAbout
-                hasOrganisationChanges = true
+            updatedOrganisation.description = updatedOragnisationAbout
+            hasOrganisationChanges = true
         }
         
         

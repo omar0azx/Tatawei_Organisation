@@ -26,7 +26,7 @@ final class MainCoordinator: Coordinator {
     
     func autoLogin() {
         
-        if AuthService.shared.checkCurrentUserStatus() ||
+        if AuthService.shared.checkCurrentUserStatus() &&
             userDefaults.object(forKey: kCURRENTUSER) != nil {
             viewNavigationVC()
         } else {
@@ -177,6 +177,18 @@ final class MainCoordinator: Coordinator {
         }
     }
     
+    func viewQRScannerRatingVC() {
+        let vc = QRScannerVC.instantiate()
+        vc.coordinator = self
+        vc.mode = .rating
+        vc.modalPresentationStyle = .fullScreen
+        if let topViewController = navigationController.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     func viewStudentsAttendanceVC(opportunityID: String) {
         let vc = StudentsVC.instantiate()
         vc.coordinator = self
@@ -222,10 +234,15 @@ final class MainCoordinator: Coordinator {
         navigationController.present(vc, animated: true)
     }
     
-    func viewStudentSkillsVC() {
+    func viewStudentSkillsVC(studentID: String) {
         let vc = StudentSkillsVC.instantiate()
         vc.coordinator = self
-        navigationController.present(vc, animated: true)
+        vc.studentID = studentID
+        if let topViewController = navigationController.presentedViewController {
+            topViewController.present(vc, animated: true, completion: nil)
+        } else {
+            navigationController.present(vc, animated: true, completion: nil)
+        }
     }
 
 }

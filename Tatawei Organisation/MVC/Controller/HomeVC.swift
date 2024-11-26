@@ -27,7 +27,7 @@ class HomeVC: UIViewController, Storyboarded {
     }
     
     @IBAction func showQRCode(_ sender: UIButton) {
-        print("showQRCode")
+        coordinator?.viewQRScannerRatingVC()
     }
     
     //MARK: - Functions
@@ -48,6 +48,7 @@ class HomeVC: UIViewController, Storyboarded {
     }
     
     @objc private func refreshTableView() {
+        updateOrganisationData()
         getAllOpportunity()
         checkOpportunityStatus()
         refreshControl.endRefreshing()
@@ -55,7 +56,7 @@ class HomeVC: UIViewController, Storyboarded {
     
     func updateOrganisationData() {
         if let organisationID = Organization.currentOrganization?.id {
-            OfficialDataService.shared.getOrganisationData(organisationID: organisationID) { status, error in
+            OrganisationDataService.shared.getOrganisationData(organisationID: organisationID) { status, error in
                 if status! {
                     print("Success to update locally storage")
                 } else {
@@ -110,7 +111,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell-2", for: indexPath) as! HomeCell
             if let organisation = Organization.currentOrganization {
-                cell.config(organisationRate: "\(organisation.rate)", numberOfOpportunities: "\(organisation.opportunitiesNumber)", numberOfStudents: "\(organisation.volunteersNumber)", opportunitiesHours: "0")
+                cell.config(organisationRate: organisation.rate, numberOfOpportunities: organisation.opportunitiesNumber, numberOfStudents: organisation.volunteersNumber, opportunitiesHours: organisation.completedOpportunitesHours)
             }
             return cell
         }

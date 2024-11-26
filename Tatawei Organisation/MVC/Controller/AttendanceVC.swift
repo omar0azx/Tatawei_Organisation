@@ -94,16 +94,26 @@ extension AttendanceVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-           if kind == UICollectionView.elementKindSectionHeader {
-               let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "OpportunityHeaderView", for: indexPath) as! OpportunityHeaderView
-               
-               if indexPath.section == 0 {
-                   headerView.titleLabel.text = "اليوم"
-               } else {
-                   headerView.titleLabel.text = "الأوقات القادمة"
-               }
-               return headerView
-           }
+            
+            if kind == UICollectionView.elementKindSectionHeader {
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "OpportunityHeaderView", for: indexPath) as! OpportunityHeaderView
+                
+                if indexPath.section == 0 {
+                    if todayOpportunities.count == 0 {
+                        headerView.titleLabel.text = ""
+                    } else {
+                        headerView.titleLabel.text = "اليوم"
+                    }
+                } else {
+                    if otherOpportunities.count == 0 {
+                        headerView.titleLabel.text = ""
+                    } else {
+                        headerView.titleLabel.text = "الأوقات القادمة"
+                    }
+                }
+                return headerView
+            }
+        
         return UICollectionReusableView()
     }
     

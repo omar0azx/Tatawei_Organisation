@@ -10,8 +10,16 @@ import UIKit
 class StudentSkillsVC: UIViewController, Storyboarded {
     
     //MARK: - Varibales
+    
     var coordinator: MainCoordinator?
+    
+    var studentID: String?
+    
     var selectedButtons: [Int] = []
+    var selectedBadges: [SkillsBadges] = [.communication, .resilience, .leadership, .creativity, .teamwork, .adaptability, .criticalThinking, .problemSolving]
+    
+    var badges: [SkillsBadges] = []
+
     
     // MARK: - IBOutlets
     @IBOutlet weak var conditionText: UILabel!
@@ -20,9 +28,13 @@ class StudentSkillsVC: UIViewController, Storyboarded {
     @IBOutlet weak var studentStage: UILabel!
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var studentImage: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        getStudentInformation()
+        
     }
     
     // MARK: - @IBAction
@@ -31,10 +43,48 @@ class StudentSkillsVC: UIViewController, Storyboarded {
     }
     
     @IBAction func didPressedSend(_ sender: Any) {
-        
+        for index in selectedButtons {
+            if index >= 0 && index < selectedBadges.count {
+                badges.append(selectedBadges[index])
+            }
+        }
+        let loadView = MessageView(message: "يرجى الإنتظار", animationName: "loading", animationTime: 1)
+        loadView.show(in: self.view)
+        guard let studentID = studentID else {return}
+        StudentDataService.shared.incrementBadges(studentID: studentID, selectedBadges: badges) { success, error in
+            if error != nil {
+                let errorView = MessageView(message: "حدث خطأ بالتقييم يرجى المحاولة لاحقًا", animationName: "warning", animationTime: 1)
+                errorView.show(in: self.view)
+                print("Cannot Rated Student")
+            } else {
+                let successView = MessageView(message: "تم تقييم الطالب بنجاح", animationName: "correct", animationTime: 1)
+                successView.show(in: self.view)
+                print("Success Rated Student")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.dismiss(animated: true)
+                }
+            }
+        }
     }
     
     //MARK: - Functions
+    
+    func getStudentInformation() {
+        
+        guard let studentID = studentID else {return}
+        StudentDataService.shared.getStudentByID(studentID: studentID) { student, error in
+            if error == nil {
+                self.studentImage.image = student?.gender == .male ? #imageLiteral(resourceName: "man.svg") : #imageLiteral(resourceName: "women.svg")
+                self.studentName.text = student?.name
+                self.studentStage.text = student?.level
+            } else {
+                print("Student Connot Found")
+            }
+        }
+
+        
+    }
+    
     func toggleButtonSelection(_ sender: UIButton) {
         let tag = sender.tag
         
@@ -50,28 +100,20 @@ class StudentSkillsVC: UIViewController, Storyboarded {
                 
                 switch tag {
                 case 0:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 case 1:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 case 2:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 case 3:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 case 4:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 case 5:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 case 6:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 case 7:
-                    print("Skill \(tag) selected")
                     skillsView[tag].backgroundColor = .standr
                 default:
                     break
